@@ -53,6 +53,10 @@ UN =
 (* ****** ****** *)
 #dynload
 "./../DATS/xatsctp_main0.dats"
+#dynload
+"./../DATS/xatsctp_envmap.dats"
+#dynload
+"./../DATS/xatsctp_dynexp.dats"
 (* ****** ****** *)
 //
 implement

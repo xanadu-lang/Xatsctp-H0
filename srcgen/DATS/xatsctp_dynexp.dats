@@ -54,4 +54,36 @@ UN =
 //
 (* ****** ****** *)
 
+implement
+xatsctp_program
+  (p0kg) =
+let
+//
+(*
+val () =
+xatsctp_initize()
+//
+val
+env0 =
+ctpenv_make_nil()
+//
+local
+val+
+H0COMPED(rcd0) = p0kg
+val-Some(dcls) = rcd0.comped
+in
+val () =
+xatsctp_h0dclist(env0, dcls)
+end // end of [local]
+//
+val () = ctpenv_free_nil(env0)
+//
+*)
+//
+in
+  // nothing
+end // end of [xatsctp_program]
+
+(* ****** ****** *)
+
 (* end of [xint_xatsctp_dynexp.dats] *)
