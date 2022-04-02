@@ -49,5 +49,39 @@ XATSOPT_targetloc
 "./../../xatsopt/srcgen/xats"
 //
 (* ****** ****** *)
+//
+#staload
+"{$XATSOPT}/SATS/intrep0.sats"
+//
+#staload "./../SATS/xatsctp.sats"
+//
+(* ****** ****** *)
 
-(* end of [xint_xatsctp_envmap.dats] *)
+local
+
+val
+the_flag = ref<int>(0)
+
+in(*in-of-local*)
+
+implement
+xatsctp_initize() =
+let
+val n0 = the_flag[]
+val () = the_flag[] := n0+1
+in
+if
+(n0 = 0)
+then
+{
+(*
+val () = xatsctp_initize_gint()
+*)
+}
+end // end of [xatsctp_initize]
+
+end // end of [local]
+
+(* ****** ****** *)
+
+(* end of [xats_xatsctp_envmap.dats] *)

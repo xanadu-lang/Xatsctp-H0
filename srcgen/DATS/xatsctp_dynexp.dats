@@ -59,10 +59,10 @@ xatsctp_program
   (p0kg) =
 let
 //
-(*
 val () =
 xatsctp_initize()
 //
+(*
 val
 env0 =
 ctpenv_make_nil()
