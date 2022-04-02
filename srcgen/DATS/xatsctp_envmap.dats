@@ -77,8 +77,49 @@ then
 (*
 val () = xatsctp_initize_gint()
 *)
-}
+} (*then*) // end of [if]
 end // end of [xatsctp_initize]
+
+end // end of [local]
+
+(* ****** ****** *)
+
+local
+//
+datavtype
+ctpenv =
+|
+CTPENV of
+(int(*level*), ctpstk)
+//
+and
+ctpstk =
+|
+ctpstk_nil of ()
+|
+ctpstk_let1 of ctpstk
+//
+absimpl ctpenv_vtbox = ctpenv
+//
+in(*in-of-local*)
+
+(* ****** ****** *)
+implement
+ctpenv_make_nil
+((*void*)) =
+CTPENV(0, ctpstk_nil())
+(* ****** ****** *)
+implement
+ctpenv_free_nil
+  (env0) =
+{
+val-0(*top*) = l0
+val-~ctpstk_nil() = xs
+} where
+{
+val+~CTPENV(l0, xs) = env0
+} (* ctpenv_free_nil *)
+(* ****** ****** *)
 
 end // end of [local]
 

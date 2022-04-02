@@ -47,16 +47,45 @@ LAB =
 H0E =
 "{$XATSOPT}/SATS/intrep0.sats"
 (* ****** ****** *)
+//
+typedef h0exp = $H0E.h0exp
+typedef h0explst = $H0E.h0explst
+typedef h0dcl = $H0E.h0dcl
+typedef h0dclist = $H0E.h0dclist
+//
+(* ****** ****** *)
 typedef h0comped = $H0E.h0comped
 (* ****** ****** *)
 //
 fun
-xatsctp_initize((*void*)): void
+xatsctp_initize(): void
 //
 (* ****** ****** *)
 //
 fun
-xatsctp_program(h0comped): void
+xatsctp_program
+  (pkg: h0comped): void
+//
+(* ****** ****** *)
+absvtype ctpenv_vtbox = ptr
+vtypedef ctpenv = ctpenv_vtbox
+(* ****** ****** *)
+//
+fun
+ctpenv_make_nil(): ctpenv
+fun
+ctpenv_free_nil(ctpenv): void
+//
+(* ****** ****** *)
+//
+fun
+xatsctp_h0dcl
+( env0:
+! ctpenv, dcl0: h0dcl): void
+fun
+xatsctp_h0dclist
+( env0:
+! ctpenv, dcls: h0dclist): void
 //
 (* ****** ****** *)
 //

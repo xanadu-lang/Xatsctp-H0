@@ -62,7 +62,6 @@ let
 val () =
 xatsctp_initize()
 //
-(*
 val
 env0 =
 ctpenv_make_nil()
@@ -78,11 +77,30 @@ end // end of [local]
 //
 val () = ctpenv_free_nil(env0)
 //
-*)
-//
 in
   // nothing
 end // end of [xatsctp_program]
+
+(* ****** ****** *)
+
+implement
+xatsctp_h0dclist
+  (env0, dcls) =
+(
+case+ dcls of
+|
+list_nil() => ()
+|
+list_cons(dcl1, dcls) =>
+{
+(*
+val () =
+xatsctp_h0dcl(env0, dcl1)
+*)
+val () =
+xatsctp_h0dclist(env0, dcls)
+}
+) (*case*) // end of [xatsctp_h0dclist]
 
 (* ****** ****** *)
 
