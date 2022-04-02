@@ -47,6 +47,18 @@ LAB =
 H0E =
 "{$XATSOPT}/SATS/intrep0.sats"
 (* ****** ****** *)
+typedef h0comped = $H0E.h0comped
+(* ****** ****** *)
+//
+fun
+xatsctp_initize((*void*)): void
+//
+(* ****** ****** *)
+//
+fun
+xatsctp_program(h0comped): void
+//
+(* ****** ****** *)
 //
 fun
 the_XATSHOME_get((*void*)): string
