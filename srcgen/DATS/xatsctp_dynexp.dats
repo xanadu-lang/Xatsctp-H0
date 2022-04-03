@@ -196,8 +196,29 @@ println!("H0Estr: ", h0t0)
 H0Evar(hdv1) =>
 println!("H0Evar: ", h0t0)
 |
+H0Ekvar(knd0, hdv1) =>
+println!("H0Ekvar: ", h0t0)
+|
 H0Efcst(hdc1) =>
 println!("H0Efcst: ", h0t0)
+//
+|
+H0Etcst
+(hdc1, tiarg) =>
+println!("H0Etcst: ", h0t0)
+//
+|
+H0Etimp
+( stmp
+, h0e1, targ
+, h0cl, tsub) =>
+let
+val () =
+println!("H0Etimp: ", h0t0)
+in
+  xatsctp_h0exp(env0, h0e1)
+; xatsctp_h0dcl(env0, h0cl)
+end (*let*) // end of [H0Etimp]
 //
 |
 H0Edapp
@@ -208,7 +229,7 @@ println!("H0Edapp: ", h0t0)
 in
   xatsctp_h0exp(env0, h0f0)
 ; xatsctp_h0explst(env0, h0es)
-end
+end (*let*) // end of [H0Edapp]
 //
 |
 H0Eift1
@@ -372,20 +393,22 @@ val+
 HVALDECL
 ( rcd ) = x0
 //
+(*
 val loc0 = rcd.loc
+*)
 val pat1 = rcd.pat
 val def2 = rcd.def
 //
 val ( ) =
 println!
-("(",loc0,").pat = ", pat1)
+( "HVALDECL.pat = ", pat1 )
 //
 val ( ) =
 xatsctp_h0pat( env0, pat1 )
 //
 val ( ) =
 println!
-("(",loc0,").def = ", def2)
+( "HVALDECL.def = ", def2 )
 //
 in
 //
@@ -424,20 +447,26 @@ val+
 HFUNDECL
   (rcd) = hfd0
 //
-val loc = rcd.loc
-val nam = rcd.nam
-val hdc = rcd.hdc
-val hag = rcd.hag
-val def = rcd.def
+(*
+val loc0 = rcd.loc
+*)
+val hdc0 = rcd.hdc
+val hag1 = rcd.hag
+val def2 = rcd.def
+//
+val ( ) =
+println!
+( "HFUNDECL.hdc = ", hdc0 )
+val ( ) =
+println!
+( "HFUNDECL.def = ", def2 )
 //
 in
 //
-println!("(", loc, ").nam = ", nam);
-println!("(", loc, ").hdc = ", hdc);
-(*
-println!("(", loc, ").hag = ", hag);
-*)
-println!("(", loc, ").def = ", def);
+case+ def2 of
+| None() => ()
+| Some(h0e2) =>
+  xatsctp_h0exp( env0, h0e2 )
 //
 end (*let*) // end of [xatsctp_hfundecl]
 
