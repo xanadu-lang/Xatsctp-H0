@@ -69,6 +69,11 @@ fun
 xatsctp_h0explst
 ( env0:
 ! ctpenv, h0es: h0explst): void
+extern
+fun
+xatsctp_h0expopt
+( env0:
+! ctpenv, opt0: h0expopt): void
 (* ****** ****** *)
 //
 implement
@@ -206,6 +211,18 @@ in
 end
 //
 |
+H0Eift1
+(h0e1, h0e2, opt3) =>
+let
+val () =
+println!("H0Eift1: ", h0t0)
+in
+  xatsctp_h0exp(env0, h0e1)
+; xatsctp_h0exp(env0, h0e2)
+; xatsctp_h0expopt(env0, opt3)
+end
+//
+|
 _(* rest-of-h0exp*) =>
 println!
 ("xatsctp_h0exp: h0e0 = ", h0e0)
@@ -230,6 +247,23 @@ val () =
 xatsctp_h0explst(env0, h0es)
 }
 ) // end of [xatsctp_h0explst]
+
+(* ****** ****** *)
+
+implement
+xatsctp_h0expopt
+(env0, opt0) =
+(
+case+ opt0 of
+|
+None() => ()
+|
+Some(h0e1) =>
+{
+val () =
+xatsctp_h0exp(env0, h0e1)
+}
+) // end of [xatsctp_h0expopt]
 
 (* ****** ****** *)
 
