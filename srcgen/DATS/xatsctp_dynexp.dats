@@ -327,6 +327,38 @@ end // end of [aux_fundecl]
 
 (* ****** ****** *)
 
+fun
+aux_impdecl3
+( env0:
+! ctpenv
+, dcl0: h0dcl): void =
+let
+//
+val-
+H0Cimpdecl3
+( tok0
+, stm0
+, mopt
+, htqa
+, hdc0, htia
+, hfas, h0e1) = dcl0.node()
+//
+val ( ) =
+println!
+("HIMPDECL3.hdc = ", hdc0)
+//
+val ( ) =
+println!
+("HIMPDECL3.def = ", h0e1)
+val ( ) =
+xatsctp_h0exp( env0, h0e1 )
+//
+in
+  // nothing
+end // end of [aux_impdecl3]
+
+(* ****** ****** *)
+
 in(* in-of-local *)
 
 implement
@@ -343,6 +375,10 @@ aux_valdecl(env0, dcl0)
 |
 H0Cfundecl _ =>
 aux_fundecl(env0, dcl0)
+//
+|
+H0Cimpdecl3 _ =>
+aux_impdecl3(env0, dcl0)
 //
 | _ (*rest-of-h0dcl*) =>
 {
