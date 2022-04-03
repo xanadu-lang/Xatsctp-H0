@@ -304,9 +304,23 @@ let
 val () =
 println!("H0Edapp: ", h0t0)
 in
-  xatsctp_h0exp(env0, h0f0)
-; xatsctp_h0explst(env0, h0es)
+xatsctp_h0exp(env0, h0f0);
+xatsctp_h0explst(env0, h0es)
 end (*let*) // end of [H0Edapp]
+//
+|
+H0Elet(dcls, h0e1) =>
+let
+val () =
+println!("H0Elet: ", h0t0)
+in
+xatsctp_h0exp
+( env0, h0e1 ) where
+{
+val () =
+xatsctp_h0dclist(env0, dcls)
+}
+end
 //
 |
 H0Eift1
@@ -422,7 +436,7 @@ H0Cimpdecl3
 //
 val ( ) =
 println!
-("HIMPDECL3.hdc = ", hdc0)
+("HIMPDECL3.hdc0 = ", hdc0)
 //
 val ( ) =
 println!
