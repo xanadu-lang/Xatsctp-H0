@@ -48,6 +48,19 @@ H0E =
 "{$XATSOPT}/SATS/intrep0.sats"
 (* ****** ****** *)
 //
+typedef h0typ = $H0E.h0typ
+//
+(* ****** ****** *)
+//
+typedef hdcon = $H0E.hdcon
+typedef hdcst = $H0E.hdcst
+typedef hdvar = $H0E.hdvar
+//
+typedef h0pat = $H0E.h0pat
+typedef h0patlst = $H0E.h0patlst
+typedef hfarg = $H0E.hfarg
+typedef hfarglst = $H0E.hfarglst
+//
 typedef h0exp = $H0E.h0exp
 typedef h0explst = $H0E.h0explst
 typedef h0dcl = $H0E.h0dcl

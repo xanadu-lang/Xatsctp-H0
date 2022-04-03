@@ -58,7 +58,23 @@ fun
 xatsctp_h0pat
 ( env0:
 ! ctpenv, h0p0: h0pat): void
-//
+extern
+fun
+xatsctp_h0patlst
+( env0:
+! ctpenv, h0ps: h0patlst): void
+(* ****** ****** *)
+extern
+fun
+xatsctp_hfarg
+( env0:
+! ctpenv, hfa0: hfarg): void
+extern
+fun
+xatsctp_hfarglst
+( env0:
+! ctpenv, hfas: hfarglst): void
+(* ****** ****** *)
 extern
 fun
 xatsctp_h0exp
@@ -78,6 +94,9 @@ xatsctp_h0expopt
 //
 implement
 fprint_val<h0pat> = fprint_h0pat
+implement
+fprint_val<hfarg> = fprint_hfarg
+//
 implement
 fprint_val<h0exp> = fprint_h0exp
 //
@@ -165,6 +184,64 @@ println!
 ("xatsctp_h0pat: h0p0 = ", h0p0)
 //
 end // end of [xatsctp_h0pat]
+
+(* ****** ****** *)
+
+implement
+xatsctp_h0patlst
+(env0, h0ps) =
+(
+case+ h0ps of
+|
+list_nil() => ()
+|
+list_cons(h0p1, h0ps) =>
+{
+val () =
+xatsctp_h0pat(env0, h0p1)
+val () =
+xatsctp_h0patlst(env0, h0ps)
+}
+) // end of [xatsctp_h0patlst]
+
+(* ****** ****** *)
+//
+implement
+xatsctp_hfarg
+(env0, hfa0) =
+(
+case+
+hfa0.node() of
+//
+| HFARGnone0() => ()
+| HFARGnone1(_) => ()
+//
+| HFARGnpats
+  (npf1, h0ps) =>
+(
+  xatsctp_h0patlst(env0, h0ps)
+)
+//
+) (*case*) // end of [xatsctp_hfarg]
+//
+(* ****** ****** *)
+
+implement
+xatsctp_hfarglst
+(env0, hfas) =
+(
+case+ hfas of
+|
+list_nil() => ()
+|
+list_cons(hfa1, hfas) =>
+{
+val () =
+xatsctp_hfarg(env0, hfa1)
+val () =
+xatsctp_hfarglst(env0, hfas)
+}
+) // end of [xatsctp_hfarglst]
 
 (* ****** ****** *)
 
@@ -349,12 +426,17 @@ println!
 //
 val ( ) =
 println!
-("HIMPDECL3.def = ", h0e1)
+("HIMPDECL3.hfas = ", hfas)
 val ( ) =
-xatsctp_h0exp( env0, h0e1 )
+xatsctp_hfarglst(env0, hfas)
 //
 in
-  // nothing
+xatsctp_h0exp
+( env0, h0e1 ) where
+{
+val ( ) =
+println!("HIMPDECL3.body = ", h0e1)
+}
 end // end of [aux_impdecl3]
 
 (* ****** ****** *)
@@ -493,16 +575,36 @@ val def2 = rcd.def
 val ( ) =
 println!
 ( "HFUNDECL.hdc = ", hdc0 )
+//
+val ( ) =
+(
+case hag1 of
+|
+None() =>
+println!
+("HFUNDECL.hag = ", "None(", ")" )
+|
+Some(hfas) =>
+(
+  xatsctp_hfarglst(env0, hfas)
+) where
+{
 val ( ) =
 println!
-( "HFUNDECL.def = ", def2 )
+("HFUNDECL.hag = ", "Some(", hfas, ")")
+}
+) (*case*) // end-of-val
+//
+val ( ) =
+println!( "HFUNDECL.def = ", def2 )
 //
 in
 //
 case+ def2 of
-| None() => ()
-| Some(h0e2) =>
-  xatsctp_h0exp( env0, h0e2 )
+|
+None() => ()
+|
+Some(h0e2) => xatsctp_h0exp(env0, h0e2)
 //
 end (*let*) // end of [xatsctp_hfundecl]
 
