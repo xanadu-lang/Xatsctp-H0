@@ -83,6 +83,33 @@ end // end of [xatsctp_program]
 
 (* ****** ****** *)
 
+local
+
+in(*in-of-local*)
+
+implement
+xatsctp_h0dcl
+  (env0, dcl0) =
+(
+case+
+dcl0.node() of
+//
+| _ (*rest-of-h0dcl*) => ()
+//
+) where
+{
+// (*
+val () =
+println!
+("xatsctp_h0dcl: dcl0 = ", dcl0)
+// *)
+//
+} (*where*)//end of [xatsctp_h0dcl]
+
+end // end of [local]
+
+(* ****** ****** *)
+
 implement
 xatsctp_h0dclist
   (env0, dcls) =
@@ -93,10 +120,8 @@ list_nil() => ()
 |
 list_cons(dcl1, dcls) =>
 {
-(*
 val () =
 xatsctp_h0dcl(env0, dcl1)
-*)
 val () =
 xatsctp_h0dclist(env0, dcls)
 }
