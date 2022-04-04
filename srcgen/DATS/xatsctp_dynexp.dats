@@ -91,6 +91,28 @@ xatsctp_h0expopt
 ( env0:
 ! ctpenv, opt0: h0expopt): void
 (* ****** ****** *)
+extern
+fun
+xatsctp_h0gpat
+( env0:
+! ctpenv, hgpt: h0gpat): void
+extern
+fun
+xatsctp_h0gualst
+( env0:
+! ctpenv, h0gs: h0gualst): void
+(* ****** ****** *)
+extern
+fun
+xatsctp_h0clau
+( env0:
+! ctpenv, hcl0: h0clau): void
+extern
+fun
+xatsctp_h0claulst
+( env0:
+! ctpenv, hcls: h0claulst): void
+(* ****** ****** *)
 //
 implement
 fprint_val<h0pat> = fprint_h0pat
@@ -174,10 +196,28 @@ in
 //
 case+
 h0p0.node() of
+//
 |
 H0Pvar(hdv1) =>
 println!
 ("H0Pvar: ", h0t0)
+//
+|
+H0Pcon(hdc1) =>
+println!
+("H0Pcon: ", h0t0)
+//
+|
+H0Pdapp
+(h0f0, npf1, h0ps) =>
+let
+val () =
+println!("H0Pdapp: ", h0t0)
+in
+xatsctp_h0pat(env0, h0f0);
+xatsctp_h0patlst(env0, h0ps)
+end (*let*) // end of [H0Pdapp]
+//
 |
 _(* rest-of-h0pat*) =>
 println!
@@ -335,6 +375,17 @@ in
 end
 //
 |
+H0Ecase
+(knd0, h0e1, hcls) =>
+let
+val () =
+println!("H0Ecase: ", h0t0)
+in
+  xatsctp_h0exp(env0, h0e1)
+; xatsctp_h0claulst(env0, hcls)
+end
+//
+|
 _(* rest-of-h0exp*) =>
 println!
 ("xatsctp_h0exp: h0e0 = ", h0e0)
@@ -376,6 +427,115 @@ val () =
 xatsctp_h0exp(env0, h0e1)
 }
 ) // end of [xatsctp_h0expopt]
+
+(* ****** ****** *)
+
+implement
+xatsctp_h0gpat
+(env0, hgpt) =
+(
+case+
+hgpt.node() of
+|
+H0GPATpat(h0p1) =>
+xatsctp_h0pat(env0, h0p1)
+|
+H0GPATgua(h0p1, h0gs) =>
+{
+val () = 
+xatsctp_h0pat(env0, h0p1)
+val () =
+xatsctp_h0gualst(env0, h0gs)
+}
+) (* end of [xatsctp_h0gpat] *)
+
+(* ****** ****** *)
+
+local
+
+fun
+auxgua
+( env0:
+! ctpenv
+, h0g0: h0gua): void =
+(
+case+
+h0g0.node() of
+|
+H0GUAexp(h0e1) =>
+xatsctp_h0exp(env0, h0e1)
+|
+H0GUAmat(h0e1, h0p2) =>
+{
+val () =
+xatsctp_h0exp(env0, h0e1)
+val () =
+xatsctp_h0pat(env0, h0p2)
+}
+) (* end of [auxgua] *)
+
+in(*in-of-local*)
+
+implement
+xatsctp_h0gualst
+(env0, h0gs) =
+(
+case+ h0gs of
+|
+list_nil() => ()
+|
+list_cons(h0g1, h0gs) =>
+{
+val () = auxgua(env0, h0g1)
+val () =
+xatsctp_h0gualst(env0, h0gs)
+}
+) (* end of [xatsctp_h0gualst] *)
+
+end // end of [local]
+
+(* ****** ****** *)
+
+implement
+xatsctp_h0clau
+(env0, hcl0) =
+(
+case+
+hcl0.node() of
+|
+H0CLAUpat
+( hgpt ) =>
+xatsctp_h0gpat(env0, hgpt)
+|
+H0CLAUexp
+(hgpt, h0e1) =>
+(
+xatsctp_h0exp( env0, h0e1 )
+) where
+{
+val () =
+xatsctp_h0gpat( env0, hgpt )
+}
+) (* end of [xatsctp_h0clau] *)
+
+(* ****** ****** *)
+
+implement
+xatsctp_h0claulst
+(env0, hcls) =
+(
+case+ hcls of
+|
+list_nil() => ()
+|
+list_cons(hcl1, hcls) =>
+{
+val () =
+xatsctp_h0clau(env0, hcl1)
+val () =
+xatsctp_h0claulst(env0, hcls)
+}
+) // end of [xatsctp_h0claulst]
 
 (* ****** ****** *)
 
