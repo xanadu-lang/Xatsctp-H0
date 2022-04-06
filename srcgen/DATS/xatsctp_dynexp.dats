@@ -113,6 +113,9 @@ xatsctp_h0claulst
 ( env0:
 ! ctpenv, hcls: h0claulst): void
 (* ****** ****** *)
+implement
+fprint_val<h0typ> = fprint_h0typ
+(* ****** ****** *)
 //
 implement
 fprint_val<h0pat> = fprint_h0pat
@@ -122,6 +125,11 @@ fprint_val<hfarg> = fprint_hfarg
 implement
 fprint_val<h0exp> = fprint_h0exp
 //
+(* ****** ****** *)
+implement
+fprint_val<htqarg> = fprint_htqarg
+implement
+fprint_val<htiarg> = fprint_htiarg
 (* ****** ****** *)
 extern
 fun
@@ -332,6 +340,10 @@ H0Etimp
 let
 val () =
 println!("H0Etimp: ", h0t0)
+val () =
+println!("H0Etimp: targ = ", targ)
+val () =
+println!("H0Etimp: tsub = ", tsub)
 in
   xatsctp_h0exp(env0, h0e1)
 ; xatsctp_h0dcl(env0, h0cl)
@@ -597,6 +609,13 @@ H0Cimpdecl3
 val ( ) =
 println!
 ("HIMPDECL3.hdc0 = ", hdc0)
+//
+val ( ) =
+println!
+("HIMPDECL3.htqa = ", htqa)
+val ( ) =
+println!
+("HIMPDECL3.htia = ", htia)
 //
 val ( ) =
 println!
