@@ -60,6 +60,26 @@ UN =
 #dynload
 "./../DATS/xatsctp_dynexp.dats"
 (* ****** ****** *)
+
+local
+//
+val
+stamper =
+$STM.stamper_new()
+//
+val () =
+$STM.stamper_set
+( stamper, 1001U(*init*) )
+//
+in (* in-of-local *)
+
+implement
+h0tnm_stamp_new() =
+$STM.stamper_getinc(stamper)
+
+end // end of [local]
+
+(* ****** ****** *)
 //
 implement
 main0(argc, argv) =

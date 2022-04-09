@@ -55,8 +55,8 @@ H0E =
 "{$XATSOPT}/SATS/intrep0.sats"
 (* ****** ****** *)
 //
-abstbox h0tnm_type = ptr
-typedef h0tnm = h0tnm_type
+abstbox h0tnm_tbox = ptr
+typedef h0tnm = h0tnm_tbox
 //
 (* ****** ****** *)
 //
@@ -113,11 +113,33 @@ ctpenv_free_nil(ctpenv): void
 (* ****** ****** *)
 //
 fun
+h0tnm_stamp_new(): stamp
+//
+fun
 h0tnm_make(h0typ): h0tnm
+//
 fun
 h0tnm_get_type(h0tnm): h0typ
 fun
 h0tnm_get_stamp(h0tnm): stamp
+//
+#symload
+.type with h0tnm_get_type
+#symload
+.stamp with h0tnm_get_stamp
+//
+(* ****** ****** *)
+//
+fun
+print_h0tnm: print_type(h0tnm)
+fun
+prerr_h0tnm: prerr_type(h0tnm)
+fun
+fprint_h0tnm: fprint_type(h0tnm)
+//
+overload print with print_h0tnm
+overload prerr with prerr_h0tnm
+overload fprint with fprint_h0tnm
 //
 (* ****** ****** *)
 //

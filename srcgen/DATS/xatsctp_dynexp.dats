@@ -200,7 +200,11 @@ xatsctp_h0pat
 let
 val loc0 = h0p0.loc()
 val h0t0 = h0p0.type()
-in
+//
+val
+htnm = h0tnm_make(h0t0)
+//
+in//in-of-let
 //
 case+
 h0p0.node() of
@@ -208,19 +212,19 @@ h0p0.node() of
 |
 H0Pvar(hdv1) =>
 println!
-("H0Pvar: ", h0t0)
+("H0Pvar: ", htnm)
 //
 |
 H0Pcon(hdc1) =>
 println!
-("H0Pcon: ", h0t0)
+("H0Pcon: ", htnm)
 //
 |
 H0Pdapp
 (h0f0, npf1, h0ps) =>
 let
 val () =
-println!("H0Pdapp: ", h0t0)
+println!("H0Pdapp: ", htnm)
 in
 xatsctp_h0pat(env0, h0f0);
 xatsctp_h0patlst(env0, h0ps)
@@ -299,6 +303,10 @@ xatsctp_h0exp
 let
 val loc0 = h0e0.loc()
 val h0t0 = h0e0.type()
+//
+val
+htnm = h0tnm_make(h0t0)
+//
 in
 //
 case+
@@ -306,31 +314,31 @@ h0e0.node() of
 //
 |
 H0Eint _ =>
-println!("H0Eint: ", h0t0)
+println!("H0Eint: ", htnm)
 |
 H0Ebtf _ =>
-println!("H0Ebtf: ", h0t0)
+println!("H0Ebtf: ", htnm)
 |
 H0Echr _ =>
-println!("H0Echr: ", h0t0)
+println!("H0Echr: ", htnm)
 |
 H0Estr _ =>
-println!("H0Estr: ", h0t0)
+println!("H0Estr: ", htnm)
 //
 |
 H0Evar(hdv1) =>
-println!("H0Evar: ", h0t0)
+println!("H0Evar: ", htnm)
 |
 H0Ekvar(knd0, hdv1) =>
-println!("H0Ekvar: ", h0t0)
+println!("H0Ekvar: ", htnm)
 |
 H0Efcst(hdc1) =>
-println!("H0Efcst: ", h0t0)
+println!("H0Efcst: ", htnm)
 //
 |
 H0Etcst
 (hdc1, tiarg) =>
-println!("H0Etcst: ", h0t0)
+println!("H0Etcst: ", htnm)
 //
 |
 H0Etimp
@@ -339,7 +347,7 @@ H0Etimp
 , h0cl, tsub) =>
 let
 val () =
-println!("H0Etimp: ", h0t0)
+println!("H0Etimp: ", htnm)
 val () =
 println!("H0Etimp: targ = ", targ)
 val () =
@@ -354,7 +362,7 @@ H0Edapp
 (h0f0, npf1, h0es) =>
 let
 val () =
-println!("H0Edapp: ", h0t0)
+println!("H0Edapp: ", htnm)
 in
 xatsctp_h0exp(env0, h0f0);
 xatsctp_h0explst(env0, h0es)
@@ -364,7 +372,7 @@ end (*let*) // end of [H0Edapp]
 H0Elet(dcls, h0e1) =>
 let
 val () =
-println!("H0Elet: ", h0t0)
+println!("H0Elet: ", htnm)
 in
 xatsctp_h0exp
 ( env0, h0e1 ) where
@@ -379,7 +387,7 @@ H0Eift1
 (h0e1, h0e2, opt3) =>
 let
 val () =
-println!("H0Eift1: ", h0t0)
+println!("H0Eift1: ", htnm)
 in
   xatsctp_h0exp(env0, h0e1)
 ; xatsctp_h0exp(env0, h0e2)
@@ -391,7 +399,7 @@ H0Ecase
 (knd0, h0e1, hcls) =>
 let
 val () =
-println!("H0Ecase: ", h0t0)
+println!("H0Ecase: ", htnm)
 in
   xatsctp_h0exp(env0, h0e1)
 ; xatsctp_h0claulst(env0, hcls)

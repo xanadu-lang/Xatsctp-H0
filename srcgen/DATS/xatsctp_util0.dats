@@ -55,6 +55,9 @@ $STM.cmp_stamp_stamp
 compare with
 $SYM.cmp_symbol_symbol
 (* ****** ****** *)
+#symload
+fprint with $STM.fprint_stamp
+(* ****** ****** *)
 //
 #define
 XATSOPT_targetloc
@@ -68,16 +71,27 @@ XATSOPT_targetloc
 #staload "./../SATS/xatsctp.sats"
 //
 (* ****** ****** *)
+
+implement
+print_h0tnm(htnm) =
+fprint_h0tnm(stdout_ref, htnm)
+implement
+prerr_h0tnm(htnm) =
+fprint_h0tnm(stderr_ref, htnm)
+
+(* ****** ****** *)
 fun
 htcst_compare
 ( htc1: htcst
 , htc2: htcst): int =
-compare(htc1.stamp(), htc2.stamp())
+compare
+(htc1.stamp(), htc2.stamp())
 fun
 htvar_compare
 ( htv1: htvar
 , htv2: htvar): int =
-compare(htv1.stamp(), htv2.stamp())
+compare
+(htv1.stamp(), htv2.stamp())
 (* ****** ****** *)
 #symload compare with htcst_compare
 #symload compare with htvar_compare
@@ -309,6 +323,234 @@ if
 (cmp3 = 0)
 then auxteq(h0t1, h0t2) else cmp3
 end
+
+end // end of [local]
+
+(* ****** ****** *)
+//
+extern
+fun
+the_htnmmap_search_ref
+(h0t0: h0typ): P2tr0(h0tnm)
+extern
+fun
+the_htnmmap_search_opt
+(h0t0: h0typ): Option_vt(h0tnm)
+//
+extern
+fun
+the_htnmmap_insert_any
+(h0t0: h0typ, htnm: h0tnm): void
+extern
+fun
+the_htnmmap_insert_exn
+(h0t0: h0typ, htnm: h0tnm): void
+//
+(* ****** ****** *)
+
+local
+
+(* ****** ****** *)
+#staload
+"libats/SATS\
+/linmap_avltree.sats"
+#staload _ =
+"libats/DATS\
+/linmap_avltree.dats"
+(* ****** ****** *)
+
+extern
+prfun
+lemma_p2tr_param
+{a:vt0p}
+{l:addr}(cp: p2tr(a, l)): [l >= null] void
+
+(* ****** ****** *)
+in(* in-of-local *)
+(* ****** ****** *)
+
+local
+
+typedef
+key = h0typ
+and
+itm = h0tnm
+vtypedef
+htnmmap = map(key, itm)
+
+var
+the_htnmmap =
+linmap_make_nil<>{key,itm}()
+val
+the_htnmmap = addr@the_htnmmap
+
+(* ****** ****** *)
+implement
+compare_key_key<key>
+  (k1, k2) =
+(
+$effmask_all(h0typ_compare(k1, k2))
+)
+(* ****** ****** *)
+
+in(*in-of-local*)
+
+(* ****** ****** *)
+
+implement
+the_htnmmap_search_ref
+  (h0t0) = let
+//
+val
+map =
+$UN.ptr0_get<htnmmap>(the_htnmmap)
+val ref =
+linmap_search_ref<key,itm>(map,h0t0)
+//
+in
+let
+prval () = $UN.cast2void(map)
+prval () = lemma_p2tr_param(ref) in ref
+end
+end // end of [the_htnmmap_search_ref]
+
+(* ****** ****** *)
+
+implement
+the_htnmmap_search_opt
+  (h0t0) = let
+//
+val
+ref = the_htnmmap_search_ref(h0t0)
+//
+in
+//
+if
+iseqz(ref)
+then None_vt()
+else Some_vt($UN.p2tr_get<itm>(ref))
+//
+end // end of [the_htnmmap_search_opt]
+
+(* ****** ****** *)
+
+implement
+the_htnmmap_insert_any
+  (h0t0, htnm) = let
+//
+var
+map =
+$UN.ptr0_get<htnmmap>(the_htnmmap)
+//
+in
+(
+$UN.ptr0_set<htnmmap>(the_htnmmap, map)
+) where
+{
+val () =
+linmap_insert_any<key,itm>(map, h0t0, htnm)
+}
+end // end of [the_htnmmap_insert_any]
+
+(* ****** ****** *)
+
+implement
+the_htnmmap_insert_exn
+  (h0t0, htnm) = let
+//
+var
+map =
+$UN.ptr0_get<htnmmap>(the_htnmmap)
+//
+in
+(
+$UN.ptr0_set<htnmmap>(the_htnmmap, map)
+) where
+{
+val-
+~None_vt() =
+linmap_insert_opt<key,itm>(map, h0t0, htnm)
+}
+end // end of [the_htnmmap_insert_exn]
+
+(* ****** ****** *)
+
+end // end of [local]
+
+(* ****** ****** *)
+
+end // end of [local]
+
+(* ****** ****** *)
+
+local
+
+datatype
+h0tnm =
+H0TNM of (stamp, h0typ)
+
+absimpl h0tnm_tbox = h0tnm
+
+in(* in-of-local*)
+
+(* ****** ****** *)
+
+implement
+h0tnm_make
+  ( h0t0 ) =
+(
+case+ opt1 of
+| ~
+None_vt() => htnm where
+{
+//
+val
+stmp =
+h0tnm_stamp_new()
+val
+htnm = H0TNM(stmp, h0t0)
+//
+val () =
+the_htnmmap_insert_exn(h0t0, htnm)
+}
+| ~Some_vt(htnm) => htnm
+//
+) where
+{
+val
+opt1 = the_htnmmap_search_opt(h0t0)
+} (*where*) // end of [h0tnm_make]
+
+(* ****** ****** *)
+
+implement
+h0tnm_get_type
+  ( htnm ) =
+let
+val+H0TNM(_, h0t0) = htnm in h0t0
+end // end of [h0tnm_get_stamp]
+
+implement
+h0tnm_get_stamp
+  (htnm) =
+let
+val+H0TNM(stmp, _) = htnm in stmp
+end // end of [h0tnm_get_stamp]
+
+(* ****** ****** *)
+
+implement
+fprint_h0tnm
+( out, htnm ) =
+(
+case+ htnm of
+|
+H0TNM(stmp, h0t0) =>
+fprint!
+(out, "H0TNM(", stmp, "; ", h0t0, ")")
+) (* end of [fprint_h0tnm] *)
+
+(* ****** ****** *)
 
 end // end of [local]
 
