@@ -80,6 +80,12 @@ xatsctp_program
   (pkg: h0comped): void
 //
 (* ****** ****** *)
+//
+fun
+h0typ_compare
+(h0typ, h0typ): int(*sign*)
+//
+(* ****** ****** *)
 absvtype ctpenv_vtbox = ptr
 vtypedef ctpenv = ctpenv_vtbox
 (* ****** ****** *)

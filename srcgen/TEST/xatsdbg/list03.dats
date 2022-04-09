@@ -7,12 +7,12 @@ Sat Apr  9 13:53:20 EDT 2022
 "prelude\
 /DATS/CATS/CC/basics.dats"
 (* ****** ****** *)
-
 #extern
 fun
 <a:type>
 mylen2(xs: a): int
-
+(* ****** ****** *)
+//
 impltmp
 {a:type}
 mylen2
@@ -27,7 +27,7 @@ list_nil() => 0
 |
 list_cons(x1, xs) => 1+auxf(xs)
 }
-
+//
 (* ****** ****** *)
 
 val xs =

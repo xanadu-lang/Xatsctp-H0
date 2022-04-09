@@ -43,6 +43,7 @@ xatsctp.sats \
 
 SRCDATS := \
 xatsctp_main0.dats \
+xatsctp_util0.dats \
 xatsctp_envmap.dats \
 xatsctp_dynexp.dats \
 
