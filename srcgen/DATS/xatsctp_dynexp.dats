@@ -578,12 +578,18 @@ aux_fundecl
 ! ctpenv
 , dcl0: h0dcl): void =
 let
+//
 val-
 H0Cfundecl
 ( knd0
 , mopt
 , tqas
 , hfds) = dcl0.node()
+//
+val () =
+println!
+("H0Cfundecl: tqas = ", tqas)
+//
 in
 xatsctp_hfundeclist(env0, hfds)
 end // end of [aux_fundecl]

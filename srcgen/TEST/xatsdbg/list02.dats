@@ -41,6 +41,18 @@ case+ xs of
 }
 
 (* ****** ****** *)
+//
+fun
+<a:type>
+mylen2
+(xs: list(a)): int =
+case+ xs of
+|
+list_nil() => 0
+|
+list_cons(x1, xs) => 1+mylen2(xs)
+//
+(* ****** ****** *)
 
 val xs =
 list_nil()
@@ -49,7 +61,10 @@ list_cons(1, xs)
 val xs =
 list_cons(2, xs)
 
+(*
 val l0 = mylen<list(int)>(xs)
+*)
+val l0 = mylen2<int>(xs)
 
 (* ****** ****** *)
 
