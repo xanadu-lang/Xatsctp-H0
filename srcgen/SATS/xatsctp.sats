@@ -40,12 +40,24 @@ XATSOPT_targetloc
 (* ****** ****** *)
 //
 #staload
+STM =
+"{$XATSOPT}/SATS/xstamp0.sats"
+#staload
 LAB =
 "{$XATSOPT}/SATS/xlabel0.sats"
+//
+(* ****** ****** *)
+typedef stamp = $STM.stamp
+typedef label = $LAB.label
 (* ****** ****** *)
 #staload
 H0E =
 "{$XATSOPT}/SATS/intrep0.sats"
+(* ****** ****** *)
+//
+abstbox h0tnm_type = ptr
+typedef h0tnm = h0tnm_type
+//
 (* ****** ****** *)
 //
 typedef h0typ = $H0E.h0typ
@@ -85,6 +97,9 @@ fun
 h0typ_compare
 (h0typ, h0typ): int(*sign*)
 //
+#symload
+compare with h0typ_compare
+//
 (* ****** ****** *)
 absvtype ctpenv_vtbox = ptr
 vtypedef ctpenv = ctpenv_vtbox
@@ -94,6 +109,15 @@ fun
 ctpenv_make_nil(): ctpenv
 fun
 ctpenv_free_nil(ctpenv): void
+//
+(* ****** ****** *)
+//
+fun
+h0tnm_make(h0typ): h0tnm
+fun
+h0tnm_get_type(h0tnm): h0typ
+fun
+h0tnm_get_stamp(h0tnm): stamp
 //
 (* ****** ****** *)
 //
