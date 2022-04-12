@@ -34,8 +34,7 @@
 (* ****** ****** *)
 //
 #include
-"share\
-/atspre_staload.hats"
+"share/atspre_staload.hats"
 #include
 "share\
 /atspre_staload_libats_ML.hats"
@@ -46,7 +45,7 @@ UN = "prelude/SATS/unsafe.sats"
 //
 #define
 XATSOPT_targetloc
-"./../../xatsopt/srcgen/xats"
+"./../../xatsopt/srcgen/xcomp"
 //
 (* ****** ****** *)
 //

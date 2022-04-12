@@ -34,11 +34,7 @@
 (* ****** ****** *)
 //
 #include
-"share\
-/atspre_staload.hats"
-#include
-"share\
-/atspre_staload_libats_ML.hats"
+"share/atspre_staload.hats"
 #staload
 UN = "prelude/SATS/unsafe.sats"
 //
@@ -46,6 +42,13 @@ UN = "prelude/SATS/unsafe.sats"
 //
 #include
 "./../HATS/libxatsopt.hats"
+//
+(* ****** ****** *)
+//
+#staload
+"{$XATSOPT}/SATS/intrep0.sats"
+//
+#staload "./../SATS/xatsctp.sats"
 //
 (* ****** ****** *)
 #symload
@@ -57,19 +60,6 @@ $SYM.cmp_symbol_symbol
 (* ****** ****** *)
 #symload
 fprint with $STM.fprint_stamp
-(* ****** ****** *)
-//
-#define
-XATSOPT_targetloc
-"./../../xatsopt/srcgen/xats"
-//
-(* ****** ****** *)
-//
-#staload
-"{$XATSOPT}/SATS/intrep0.sats"
-//
-#staload "./../SATS/xatsctp.sats"
-//
 (* ****** ****** *)
 
 implement
@@ -496,7 +486,7 @@ in(* in-of-local*)
 (* ****** ****** *)
 
 implement
-h0tnm_make
+h0tnm_make_type
   ( h0t0 ) =
 (
 case+ opt1 of
@@ -519,7 +509,7 @@ the_htnmmap_insert_exn(h0t0, htnm)
 {
 val
 opt1 = the_htnmmap_search_opt(h0t0)
-} (*where*) // end of [h0tnm_make]
+} // end of [h0tnm_make_type]
 
 (* ****** ****** *)
 
@@ -552,6 +542,95 @@ fprint!
 
 (* ****** ****** *)
 
+end // end of [local]
+
+(* ****** ****** *)
+
+local
+
+fun
+auxh0t0
+(h0t0: h0typ): void =
+(
+case+
+h0t0.node() of
+//
+| H0Tbas _ => ()
+| H0Tcst _ => ()
+| H0Tvar _ => ()
+//
+|
+H0Tlft(h0t1) => auxh0t0(h0t1)
+|
+H0Tapp
+(h0t1, h0ts) => auxh0ts(h0ts)
+|
+H0Tfun
+(npf0,
+ h0ts, h0t1) => auxh0ts(h0ts)
+|
+H0Tlam
+(s2vs, h0t1) => auxh0t0(h0t1)
+|
+H0Ttyrec
+(knd0,
+ npf0, lhts) => auxlhts(lhts)
+|
+H0Ttyext
+(tnm0, h0ts) => auxh0ts(h0ts)
+//
+| H0Tnone1(h0t1) => ((*void*))
+) (*case*) // end of [auxh0t0]
+
+and
+auxh0ts
+(h0ts: h0typlst): void =
+(
+case+ h0ts of
+|
+list_nil() => ()
+|
+list_cons(h0t1, h0ts) =>
+let
+val _(*htnm*) =
+h0typ_tnmize(h0t1) in auxh0ts(h0ts)
+end // end of [list_cons]
+) (*case*) // end of [auxh0ts]
+
+and
+auxlhts
+(lhts: labh0typlst): void =
+(
+case+ lhts of
+|
+list_nil() => ()
+|
+list_cons(lht1, lhts) =>
+let
+val _(*htnm*) =
+h0typ_tnmize(h0t1) in auxlhts(lhts)
+end where
+{
+  val+SLABELED( lab1, h0t1 ) = lht1
+}
+) (*case*) // end of [auxlhts]
+
+in(* in-of-local *)
+//
+implement
+h0typ_tnmize
+  ( h0t0 ) = h0tnm_make_type(h0t0)
+//
+implement
+h0typ_tnmize_rec
+  ( h0t0 ) = let
+//
+val
+htnm =
+h0typ_tnmize(h0t0) in auxh0t0(h0t0); htnm
+//
+end // end of [h0typ_tnmize_rec]
+//
 end // end of [local]
 
 (* ****** ****** *)

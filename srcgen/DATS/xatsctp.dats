@@ -34,16 +34,9 @@
 (* ****** ****** *)
 //
 #include
-"share\
-/atspre_staload.hats"
+"share/atspre_staload.hats"
 #staload
-UN =
-"prelude/SATS/unsafe.sats"
-//
-(* ****** ****** *)
-//
-#staload
-"./../SATS/xatsctp.sats"
+UN = "prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
 //
@@ -59,6 +52,10 @@ UN =
 "./../DATS/xatsctp_envmap.dats"
 #dynload
 "./../DATS/xatsctp_dynexp.dats"
+(* ****** ****** *)
+//
+#staload "./../SATS/xatsctp.sats"
+//
 (* ****** ****** *)
 
 local

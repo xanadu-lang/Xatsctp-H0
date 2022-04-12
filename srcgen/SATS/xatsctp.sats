@@ -35,7 +35,7 @@
 //
 #define
 XATSOPT_targetloc
-"./../../xatsopt/srcgen/xats"
+"./../../xatsopt/srcgen/xcomp"
 //
 (* ****** ****** *)
 //
@@ -116,12 +116,12 @@ fun
 h0tnm_stamp_new(): stamp
 //
 fun
-h0tnm_make(h0typ): h0tnm
-//
-fun
 h0tnm_get_type(h0tnm): h0typ
 fun
 h0tnm_get_stamp(h0tnm): stamp
+//
+fun
+h0tnm_make_type(h0typ): h0tnm
 //
 #symload
 .type with h0tnm_get_type
@@ -144,9 +144,16 @@ overload fprint with fprint_h0tnm
 (* ****** ****** *)
 //
 fun
+h0typ_tnmize(h0typ): h0tnm
+fun
+h0typ_tnmize_rec(h0typ): h0tnm
+//
+(* ****** ****** *)
+//
+fun
 xatsctp_h0dcl
 ( env0:
-! ctpenv, dcl0: h0dcl): void
+! ctpenv, dcl0: h0dcl ): void
 fun
 xatsctp_h0dclist
 ( env0:
