@@ -57,61 +57,61 @@ extern
 fun
 xatsctp_h0pat
 ( env0:
-! ctpenv, h0p0: h0pat): void
+! xctpenv, h0p0: h0pat): void
 extern
 fun
 xatsctp_h0patlst
 ( env0:
-! ctpenv, h0ps: h0patlst): void
+! xctpenv, h0ps: h0patlst): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_hfarg
 ( env0:
-! ctpenv, hfa0: hfarg): void
+! xctpenv, hfa0: hfarg): void
 extern
 fun
 xatsctp_hfarglst
 ( env0:
-! ctpenv, hfas: hfarglst): void
+! xctpenv, hfas: hfarglst): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_h0exp
 ( env0:
-! ctpenv, h0e0: h0exp): void
+! xctpenv, h0e0: h0exp): void
 extern
 fun
 xatsctp_h0explst
 ( env0:
-! ctpenv, h0es: h0explst): void
+! xctpenv, h0es: h0explst): void
 extern
 fun
 xatsctp_h0expopt
 ( env0:
-! ctpenv, opt0: h0expopt): void
+! xctpenv, opt0: h0expopt): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_h0gpat
 ( env0:
-! ctpenv, hgpt: h0gpat): void
+! xctpenv, hgpt: h0gpat): void
 extern
 fun
 xatsctp_h0gualst
 ( env0:
-! ctpenv, h0gs: h0gualst): void
+! xctpenv, h0gs: h0gualst): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_h0clau
 ( env0:
-! ctpenv, hcl0: h0clau): void
+! xctpenv, hcl0: h0clau): void
 extern
 fun
 xatsctp_h0claulst
 ( env0:
-! ctpenv, hcls: h0claulst): void
+! xctpenv, hcls: h0claulst): void
 (* ****** ****** *)
 implement
 fprint_val<h0typ> = fprint_h0typ
@@ -135,34 +135,34 @@ extern
 fun
 xatsctp_hvaldecl
 ( env0:
-! ctpenv, hvd0: hvaldecl): void
+! xctpenv, hvd0: hvaldecl): void
 extern
 fun
 xatsctp_hvaldeclist
 ( env0:
-! ctpenv, hvds: hvaldeclist): void
+! xctpenv, hvds: hvaldeclist): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_hvardecl
 ( env0:
-! ctpenv, hvd0: hvardecl): void
+! xctpenv, hvd0: hvardecl): void
 extern
 fun
 xatsctp_hvardeclist
 ( env0:
-! ctpenv, hvds: hvardeclist): void
+! xctpenv, hvds: hvardeclist): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_hfundecl
 ( env0:
-! ctpenv, hfd0: hfundecl): void
+! xctpenv, hfd0: hfundecl): void
 extern
 fun
 xatsctp_hfundeclist
 ( env0:
-! ctpenv, hfds: hfundeclist): void
+! xctpenv, hfds: hfundeclist): void
 (* ****** ****** *)
 
 implement
@@ -175,7 +175,7 @@ xatsctp_initize()
 //
 val
 env0 =
-ctpenv_make_nil()
+xctpenv_make_nil()
 //
 local
 val+
@@ -186,7 +186,7 @@ val () =
 xatsctp_h0dclist(env0, dcls)
 end // end of [local]
 //
-val () = ctpenv_free_nil(env0)
+val () = xctpenv_free_nil(env0)
 //
 in
   // nothing
@@ -201,7 +201,7 @@ let
 val loc0 = h0p0.loc()
 val h0t0 = h0p0.type()
 //
-val htnm =
+val ltnm =
 h0typ_tnmize_rec(h0t0)
 //
 in//in-of-let
@@ -212,19 +212,19 @@ h0p0.node() of
 |
 H0Pvar(hdv1) =>
 println!
-("H0Pvar: ", htnm)
+("H0Pvar: ", ltnm)
 //
 |
 H0Pcon(hdc1) =>
 println!
-("H0Pcon: ", htnm)
+("H0Pcon: ", ltnm)
 //
 |
 H0Pdapp
 (h0f0, npf1, h0ps) =>
 let
 val () =
-println!("H0Pdapp: ", htnm)
+println!("H0Pdapp: ", ltnm)
 in
 xatsctp_h0pat(env0, h0f0);
 xatsctp_h0patlst(env0, h0ps)
@@ -304,7 +304,7 @@ let
 val loc0 = h0e0.loc()
 val h0t0 = h0e0.type()
 //
-val htnm =
+val ltnm =
 h0typ_tnmize_rec(h0t0)
 //
 in
@@ -314,31 +314,31 @@ h0e0.node() of
 //
 |
 H0Eint _ =>
-println!("H0Eint: ", htnm)
+println!("H0Eint: ", ltnm)
 |
 H0Ebtf _ =>
-println!("H0Ebtf: ", htnm)
+println!("H0Ebtf: ", ltnm)
 |
 H0Echr _ =>
-println!("H0Echr: ", htnm)
+println!("H0Echr: ", ltnm)
 |
 H0Estr _ =>
-println!("H0Estr: ", htnm)
+println!("H0Estr: ", ltnm)
 //
 |
 H0Evar(hdv1) =>
-println!("H0Evar: ", htnm)
+println!("H0Evar: ", ltnm)
 |
 H0Ekvar(knd0, hdv1) =>
-println!("H0Ekvar: ", htnm)
+println!("H0Ekvar: ", ltnm)
 |
 H0Efcst(hdc1) =>
-println!("H0Efcst: ", htnm)
+println!("H0Efcst: ", ltnm)
 //
 |
 H0Etcst
 (hdc1, tiarg) =>
-println!("H0Etcst: ", htnm)
+println!("H0Etcst: ", ltnm)
 //
 |
 H0Etimp
@@ -347,7 +347,7 @@ H0Etimp
 , h0cl, tsub) =>
 let
 val () =
-println!("H0Etimp: ", htnm)
+println!("H0Etimp: ", ltnm)
 val () =
 println!("H0Etimp: targ = ", targ)
 val () =
@@ -362,7 +362,7 @@ H0Edapp
 (h0f0, npf1, h0es) =>
 let
 val () =
-println!("H0Edapp: ", htnm)
+println!("H0Edapp: ", ltnm)
 in
 xatsctp_h0exp(env0, h0f0);
 xatsctp_h0explst(env0, h0es)
@@ -372,7 +372,7 @@ end (*let*) // end of [H0Edapp]
 H0Elet(dcls, h0e1) =>
 let
 val () =
-println!("H0Elet: ", htnm)
+println!("H0Elet: ", ltnm)
 in
 xatsctp_h0exp
 ( env0, h0e1 ) where
@@ -387,7 +387,7 @@ H0Eift1
 (h0e1, h0e2, opt3) =>
 let
 val () =
-println!("H0Eift1: ", htnm)
+println!("H0Eift1: ", ltnm)
 in
   xatsctp_h0exp(env0, h0e1)
 ; xatsctp_h0exp(env0, h0e2)
@@ -399,7 +399,7 @@ H0Ecase
 (knd0, h0e1, hcls) =>
 let
 val () =
-println!("H0Ecase: ", htnm)
+println!("H0Ecase: ", ltnm)
 in
   xatsctp_h0exp(env0, h0e1)
 ; xatsctp_h0claulst(env0, hcls)
@@ -476,7 +476,7 @@ local
 fun
 auxgua
 ( env0:
-! ctpenv
+! xctpenv
 , h0g0: h0gua): void =
 (
 case+
@@ -566,7 +566,7 @@ local
 fun
 aux_valdecl
 ( env0:
-! ctpenv
+! xctpenv
 , dcl0: h0dcl): void =
 let
 val-
@@ -583,7 +583,7 @@ end // end of [aux_valdecl]
 fun
 aux_fundecl
 ( env0:
-! ctpenv
+! xctpenv
 , dcl0: h0dcl): void =
 let
 //
@@ -607,7 +607,7 @@ end // end of [aux_fundecl]
 fun
 aux_impdecl3
 ( env0:
-! ctpenv
+! xctpenv
 , dcl0: h0dcl): void =
 let
 //

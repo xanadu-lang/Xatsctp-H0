@@ -86,38 +86,38 @@ end // end of [local]
 local
 //
 datavtype
-ctpenv =
+xctpenv =
 |
-CTPENV of
-(int(*level*), ctpstk)
+XCTPENV of
+(int(*level*), xctpstk)
 //
 and
-ctpstk =
+xctpstk =
 |
-ctpstk_nil of ()
+xctpstk_nil of ()
 |
-ctpstk_let1 of ctpstk
+xctpstk_let1 of xctpstk
 //
-absimpl ctpenv_vtbox = ctpenv
+absimpl xctpenv_vtbox = xctpenv
 //
 in(*in-of-local*)
 
 (* ****** ****** *)
 implement
-ctpenv_make_nil
+xctpenv_make_nil
 ((*void*)) =
-CTPENV(0, ctpstk_nil())
+XCTPENV(0, xctpstk_nil())
 (* ****** ****** *)
 implement
-ctpenv_free_nil
+xctpenv_free_nil
   (env0) =
 {
 val-0(*top*) = l0
-val-~ctpstk_nil() = xs
+val-~xctpstk_nil() = xs
 } where
 {
-val+~CTPENV(l0, xs) = env0
-} (* ctpenv_free_nil *)
+val+~XCTPENV(l0, xs) = env0
+} (* xctpenv_free_nil *)
 (* ****** ****** *)
 
 end // end of [local]

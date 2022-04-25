@@ -71,7 +71,7 @@ $STM.stamper_set
 in (* in-of-local *)
 
 implement
-h0tnm_stamp_new() =
+l1tnm_stamp_new() =
 $STM.stamper_getinc(stamper)
 
 end // end of [local]

@@ -52,22 +52,20 @@ UN = "prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
 #symload
-compare with
-$STM.cmp_stamp_stamp
+compare with cmp_stamp_stamp
 #symload
-compare with
-$SYM.cmp_symbol_symbol
+compare with cmp_symbol_symbol
 (* ****** ****** *)
 #symload
 fprint with $STM.fprint_stamp
 (* ****** ****** *)
 
 implement
-print_h0tnm(htnm) =
-fprint_h0tnm(stdout_ref, htnm)
+print_l1tnm(ltnm) =
+fprint_l1tnm(stdout_ref, ltnm)
 implement
-prerr_h0tnm(htnm) =
-fprint_h0tnm(stderr_ref, htnm)
+prerr_l1tnm(ltnm) =
+fprint_l1tnm(stderr_ref, ltnm)
 
 (* ****** ****** *)
 fun
@@ -320,21 +318,21 @@ end // end of [local]
 //
 extern
 fun
-the_htnmmap_search_ref
-(h0t0: h0typ): P2tr0(h0tnm)
+the_ltnmmap_search_ref
+(h0t0: h0typ): P2tr0(l1tnm)
 extern
 fun
-the_htnmmap_search_opt
-(h0t0: h0typ): Option_vt(h0tnm)
+the_ltnmmap_search_opt
+(h0t0: h0typ): Option_vt(l1tnm)
 //
 extern
 fun
-the_htnmmap_insert_any
-(h0t0: h0typ, htnm: h0tnm): void
+the_ltnmmap_insert_any
+(h0t0: h0typ, ltnm: l1tnm): void
 extern
 fun
-the_htnmmap_insert_exn
-(h0t0: h0typ, htnm: h0tnm): void
+the_ltnmmap_insert_exn
+(h0t0: h0typ, ltnm: l1tnm): void
 //
 (* ****** ****** *)
 
@@ -364,15 +362,15 @@ local
 typedef
 key = h0typ
 and
-itm = h0tnm
+itm = l1tnm
 vtypedef
-htnmmap = map(key, itm)
+ltnmmap = map(key, itm)
 
 var
-the_htnmmap =
+the_ltnmmap =
 linmap_make_nil<>{key,itm}()
 val
-the_htnmmap = addr@the_htnmmap
+the_ltnmmap = addr@the_ltnmmap
 
 (* ****** ****** *)
 implement
@@ -388,12 +386,12 @@ in(*in-of-local*)
 (* ****** ****** *)
 
 implement
-the_htnmmap_search_ref
+the_ltnmmap_search_ref
   (h0t0) = let
 //
 val
 map =
-$UN.ptr0_get<htnmmap>(the_htnmmap)
+$UN.ptr0_get<ltnmmap>(the_ltnmmap)
 val ref =
 linmap_search_ref<key,itm>(map,h0t0)
 //
@@ -402,16 +400,16 @@ let
 prval () = $UN.cast2void(map)
 prval () = lemma_p2tr_param(ref) in ref
 end
-end // end of [the_htnmmap_search_ref]
+end // end of [the_ltnmmap_search_ref]
 
 (* ****** ****** *)
 
 implement
-the_htnmmap_search_opt
+the_ltnmmap_search_opt
   (h0t0) = let
 //
 val
-ref = the_htnmmap_search_ref(h0t0)
+ref = the_ltnmmap_search_ref(h0t0)
 //
 in
 //
@@ -420,48 +418,48 @@ iseqz(ref)
 then None_vt()
 else Some_vt($UN.p2tr_get<itm>(ref))
 //
-end // end of [the_htnmmap_search_opt]
+end // end of [the_ltnmmap_search_opt]
 
 (* ****** ****** *)
 
 implement
-the_htnmmap_insert_any
-  (h0t0, htnm) = let
+the_ltnmmap_insert_any
+  (h0t0, ltnm) = let
 //
 var
 map =
-$UN.ptr0_get<htnmmap>(the_htnmmap)
+$UN.ptr0_get<ltnmmap>(the_ltnmmap)
 //
 in
 (
-$UN.ptr0_set<htnmmap>(the_htnmmap, map)
+$UN.ptr0_set<ltnmmap>(the_ltnmmap, map)
 ) where
 {
 val () =
-linmap_insert_any<key,itm>(map, h0t0, htnm)
+linmap_insert_any<key,itm>(map, h0t0, ltnm)
 }
-end // end of [the_htnmmap_insert_any]
+end // end of [the_ltnmmap_insert_any]
 
 (* ****** ****** *)
 
 implement
-the_htnmmap_insert_exn
-  (h0t0, htnm) = let
+the_ltnmmap_insert_exn
+  (h0t0, ltnm) = let
 //
 var
 map =
-$UN.ptr0_get<htnmmap>(the_htnmmap)
+$UN.ptr0_get<ltnmmap>(the_ltnmmap)
 //
 in
 (
-$UN.ptr0_set<htnmmap>(the_htnmmap, map)
+$UN.ptr0_set<ltnmmap>(the_ltnmmap, map)
 ) where
 {
 val-
 ~None_vt() =
-linmap_insert_opt<key,itm>(map, h0t0, htnm)
+linmap_insert_opt<key,itm>(map, h0t0, ltnm)
 }
-end // end of [the_htnmmap_insert_exn]
+end // end of [the_ltnmmap_insert_exn]
 
 (* ****** ****** *)
 
@@ -476,69 +474,69 @@ end // end of [local]
 local
 
 datatype
-h0tnm =
-H0TNM of (stamp, h0typ)
+l1tnm =
+L1TNM of (stamp, h0typ)
 
-absimpl h0tnm_tbox = h0tnm
+absimpl l1tnm_tbox = l1tnm
 
 in(* in-of-local*)
 
 (* ****** ****** *)
 
 implement
-h0tnm_make_type
+l1tnm_make_type
   ( h0t0 ) =
 (
 case+ opt1 of
 | ~
-None_vt() => htnm where
+None_vt() => ltnm where
 {
 //
 val
 stmp =
-h0tnm_stamp_new()
+l1tnm_stamp_new()
 val
-htnm = H0TNM(stmp, h0t0)
+ltnm = L1TNM(stmp, h0t0)
 //
 val () =
-the_htnmmap_insert_exn(h0t0, htnm)
+the_ltnmmap_insert_exn(h0t0, ltnm)
 }
-| ~Some_vt(htnm) => htnm
+| ~Some_vt(ltnm) => ltnm
 //
 ) where
 {
 val
-opt1 = the_htnmmap_search_opt(h0t0)
-} // end of [h0tnm_make_type]
+opt1 = the_ltnmmap_search_opt(h0t0)
+} // end of [l1tnm_make_type]
 
 (* ****** ****** *)
 
 implement
-h0tnm_get_type
-  ( htnm ) =
+l1tnm_get_type
+  ( ltnm ) =
 let
-val+H0TNM(_, h0t0) = htnm in h0t0
-end // end of [h0tnm_get_stamp]
+val+L1TNM(_, h0t0) = ltnm in h0t0
+end // end of [l1tnm_get_stamp]
 
 implement
-h0tnm_get_stamp
-  (htnm) =
+l1tnm_get_stamp
+  (ltnm) =
 let
-val+H0TNM(stmp, _) = htnm in stmp
-end // end of [h0tnm_get_stamp]
+val+L1TNM(stmp, _) = ltnm in stmp
+end // end of [l1tnm_get_stamp]
 
 (* ****** ****** *)
 
 implement
-fprint_h0tnm
-( out, htnm ) =
+fprint_l1tnm
+( out, ltnm ) =
 (
-case+ htnm of
+case+ ltnm of
 |
-H0TNM(stmp, h0t0) =>
+L1TNM(stmp, h0t0) =>
 fprint!
-(out, "H0TNM(", stmp, "; ", h0t0, ")")
-) (* end of [fprint_h0tnm] *)
+(out, "L1TNM(", stmp, "; ", h0t0, ")")
+) (* end of [fprint_l1tnm] *)
 
 (* ****** ****** *)
 
@@ -592,7 +590,7 @@ list_nil() => ()
 |
 list_cons(h0t1, h0ts) =>
 let
-val _(*htnm*) =
+val _(*ltnm*) =
 h0typ_tnmize(h0t1) in auxh0ts(h0ts)
 end // end of [list_cons]
 ) (*case*) // end of [auxh0ts]
@@ -607,7 +605,7 @@ list_nil() => ()
 |
 list_cons(lht1, lhts) =>
 let
-val _(*htnm*) =
+val _(*ltnm*) =
 h0typ_tnmize(h0t1) in auxlhts(lhts)
 end where
 {
@@ -619,15 +617,15 @@ in(* in-of-local *)
 //
 implement
 h0typ_tnmize
-  ( h0t0 ) = h0tnm_make_type(h0t0)
+  ( h0t0 ) = l1tnm_make_type(h0t0)
 //
 implement
 h0typ_tnmize_rec
   ( h0t0 ) = let
 //
 val
-htnm =
-h0typ_tnmize(h0t0) in auxh0t0(h0t0); htnm
+ltnm =
+h0typ_tnmize(h0t0) in auxh0t0(h0t0); ltnm
 //
 end // end of [h0typ_tnmize_rec]
 //

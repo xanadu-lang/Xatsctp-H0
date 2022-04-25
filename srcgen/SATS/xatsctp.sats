@@ -55,8 +55,8 @@ H0E =
 "{$XATSOPT}/SATS/intrep0.sats"
 (* ****** ****** *)
 //
-abstbox h0tnm_tbox = ptr
-typedef h0tnm = h0tnm_tbox
+abstbox l1tnm_tbox = ptr
+typedef l1tnm = l1tnm_tbox
 //
 (* ****** ****** *)
 //
@@ -101,63 +101,64 @@ h0typ_compare
 compare with h0typ_compare
 //
 (* ****** ****** *)
-absvtype ctpenv_vtbox = ptr
-vtypedef ctpenv = ctpenv_vtbox
+absvtype
+xctpenv_vtbox = ptr(*boxed*)
+vtypedef xctpenv=xctpenv_vtbox
 (* ****** ****** *)
 //
 fun
-ctpenv_make_nil(): ctpenv
+xctpenv_make_nil(): xctpenv
 fun
-ctpenv_free_nil(ctpenv): void
+xctpenv_free_nil(xctpenv): void
 //
 (* ****** ****** *)
 //
 fun
-h0tnm_stamp_new(): stamp
+l1tnm_stamp_new(): stamp
 //
 fun
-h0tnm_get_type(h0tnm): h0typ
+l1tnm_get_type(l1tnm): h0typ
 fun
-h0tnm_get_stamp(h0tnm): stamp
+l1tnm_get_stamp(l1tnm): stamp
 //
 fun
-h0tnm_make_type(h0typ): h0tnm
+l1tnm_make_type(h0typ): l1tnm
 //
 #symload
-.type with h0tnm_get_type
+.type with l1tnm_get_type
 #symload
-.stamp with h0tnm_get_stamp
+.stamp with l1tnm_get_stamp
 //
 (* ****** ****** *)
 //
 fun
-print_h0tnm: print_type(h0tnm)
+print_l1tnm: print_type(l1tnm)
 fun
-prerr_h0tnm: prerr_type(h0tnm)
+prerr_l1tnm: prerr_type(l1tnm)
 fun
-fprint_h0tnm: fprint_type(h0tnm)
+fprint_l1tnm: fprint_type(l1tnm)
 //
-overload print with print_h0tnm
-overload prerr with prerr_h0tnm
-overload fprint with fprint_h0tnm
+overload print with print_l1tnm
+overload prerr with prerr_l1tnm
+overload fprint with fprint_l1tnm
 //
 (* ****** ****** *)
 //
 fun
-h0typ_tnmize(h0typ): h0tnm
+h0typ_tnmize(h0typ): l1tnm
 fun
-h0typ_tnmize_rec(h0typ): h0tnm
+h0typ_tnmize_rec(h0typ): l1tnm
 //
 (* ****** ****** *)
 //
 fun
 xatsctp_h0dcl
 ( env0:
-! ctpenv, dcl0: h0dcl ): void
+! xctpenv, dcl0: h0dcl ): void
 fun
 xatsctp_h0dclist
 ( env0:
-! ctpenv, dcls: h0dclist): void
+! xctpenv, dcls: h0dclist): void
 //
 (* ****** ****** *)
 //
