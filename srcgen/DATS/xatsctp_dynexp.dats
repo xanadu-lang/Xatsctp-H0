@@ -202,7 +202,7 @@ val loc0 = h0p0.loc()
 val h0t0 = h0p0.type()
 //
 val ltnm =
-h0typ_tnmize_rec(h0t0)
+h0typ_tnmize_rec1(h0t0)
 //
 in//in-of-let
 //
@@ -305,7 +305,7 @@ val loc0 = h0e0.loc()
 val h0t0 = h0e0.type()
 //
 val ltnm =
-h0typ_tnmize_rec(h0t0)
+h0typ_tnmize_rec1(h0t0)
 //
 in
 //
