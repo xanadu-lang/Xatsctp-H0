@@ -186,6 +186,14 @@ val () =
 xatsctp_h0dclist(env0, dcls)
 end // end of [local]
 //
+val () =
+let
+val () =
+the_ltnmmap_ctpize()
+in
+  the_ltnmmap_temit((*nil*))
+end (*let*) // end-of-[val]
+//
 val () = xctpenv_free_nil(env0)
 //
 in

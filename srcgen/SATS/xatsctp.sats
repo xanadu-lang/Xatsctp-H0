@@ -253,9 +253,34 @@ fun
 h0typ_tnmize_rec1(h0typ): l1tnm
 //
 (* ****** ****** *)
+//
+fun
+l1tnm_ctpize(l1tnm): l1ctp
+fun
+h0typ_ctpize_rec1(h0typ): l1ctp
+//
+(* ****** ****** *)
+//
+fun
+the_ltnmmap_ctpize(): void
+//
+(* ****** ****** *)
 fun
 the_ltnmmap_search_opt
 (h0t0: h0typ): Option_vt(l1tnm)
+(* ****** ****** *)
+//
+fun
+the_ltnmmap_listize
+  ( (*void*) ): l1tnmlst_vt
+//
+(* ****** ****** *)
+//
+fun
+l1tnm_temit(ltnm:l1tnm): void
+fun
+the_ltnmmap_temit((*nil*)): void
+//
 (* ****** ****** *)
 //
 fun

@@ -34,90 +34,68 @@
 (* ****** ****** *)
 //
 #include
-"share/atspre_staload.hats"
+"share\
+/atspre_staload.hats"
 #staload
-UN = "prelude/SATS/unsafe.sats"
+UN =
+"prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
 //
 #include
-"./../HATS/libxatsctp.hats"
+"./../HATS/libxatsopt.hats"
 //
-(* ****** ****** *)
-#dynload
-"./../DATS/xatsctp_main0.dats"
-#dynload
-"./../DATS/xatsctp_l1tnm.dats"
-#dynload
-"./../DATS/xatsctp_print.dats"
-#dynload
-"./../DATS/xatsctp_util0.dats"
-#dynload
-"./../DATS/xatsctp_temit.dats"
-#dynload
-"./../DATS/xatsctp_envmap.dats"
-#dynload
-"./../DATS/xatsctp_dynexp.dats"
 (* ****** ****** *)
 //
 #staload "./../SATS/xatsctp.sats"
 //
 (* ****** ****** *)
 
-local
-//
-val
-stamper =
-$STM.stamper_new()
-//
-val () =
-$STM.stamper_set
-( stamper, 1001U(*init*) )
-//
-in (* in-of-local *)
-
 implement
-l1tnm_stamp_new() =
-$STM.stamper_getinc(stamper)
-
-end // end of [local]
+l1tnm_temit(ltnm) =
+fprintln!
+(out, ltnm) where
+{
+  val out = stdout_ref
+}
 
 (* ****** ****** *)
-//
+
 implement
-main0(argc, argv) =
+the_ltnmmap_temit() =
+let
+//
+val out = stdout_ref
+//
+fun
+auxmain
+( tnms
+: l1tnmlst_vt): void =
+//
+case+ tnms of
+| ~
+list_vt_nil() => ()
+| ~
+list_vt_cons
+(tnm1, tnms) =>
 (
-//
-if
-(argc >= 2)
-then
-(
-xatsctp_main0(argc, argv)
-)
-else
+  auxmain(tnms)) where
 {
-val () =
-prerrln!
-("Hello from ATS3(xatsctp)!")
 //
-val
-XATSHOME = the_XATSHOME_get()
-val
-((*void*)) =
-prerrln!
-("xatsctp: XATSHOME=",XATSHOME)
+  val () =
+  print!
+  ("the_ltnmmap_temit: ")
 //
-} (* else *) // end of [if]
-) where
-{
-// (*
-// (*
-val out = stderr_ref
-val ( ) =
-$XATSOPT.echo_argc_argv(out, argc, argv)
-// *)
-} (* end of [main0] *)
+  val () = l1tnm_temit(tnm1)
 //
+}
+//
+in(*in-of-let*)
+//
+auxmain(the_ltnmmap_listize())
+//
+end (* end of [the_ltnmmap_temit] *)
+
 (* ****** ****** *)
 
-(* end of [xats_xatsctp.dats] *)
+(* end of [xats_xatsctp_temit.dats] *)

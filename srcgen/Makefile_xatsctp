@@ -46,6 +46,7 @@ xatsctp_main0.dats \
 xatsctp_l1tnm.dats \
 xatsctp_print.dats \
 xatsctp_util0.dats \
+xatsctp_temit.dats \
 xatsctp_envmap.dats \
 xatsctp_dynexp.dats \
 
