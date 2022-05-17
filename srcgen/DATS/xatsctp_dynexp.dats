@@ -362,7 +362,7 @@ val () =
 println!("H0Etimp: tsub = ", tsub)
 in
   xatsctp_h0exp(env0, h0e1)
-; xatsctp_h0dcl(env0, h0cl)
+; xatsctp_h0dcl_timp(env0, h0cl)
 end (*let*) // end of [H0Etimp]
 //
 |
@@ -602,18 +602,85 @@ H0Cfundecl
 , tqas
 , hfds) = dcl0.node()
 //
+in
+case+ tqas of
+|
+list_nil() => // function
+aux_fundecl_fun(env0, dcl0)
+|
+list_cons _ => // template
+aux_fundecl_tmp(env0, dcl0)
+end // end of [aux_fundecl]
+
+and
+aux_fundecl_fun
+( env0:
+! xctpenv
+, dcl0: h0dcl): void =
+let
+//
+val-
+H0Cfundecl
+( knd0
+, mopt
+, tqas
+, hfds) = dcl0.node()
+//
 val () =
 println!
 ("H0Cfundecl: tqas = ", tqas)
 //
 in
 xatsctp_hfundeclist(env0, hfds)
-end // end of [aux_fundecl]
+end // end of [aux_fundecl_fun]
+
+and
+aux_fundecl_tmp
+( env0:
+! xctpenv
+, dcl0: h0dcl): void =
+let
+//
+(*
+val loc0 = dcl0.loc()
+*)
+//
+in
+(*
+HX: should template be compiled?
+*)
+end // end of [aux_fundecl_tmp]
 
 (* ****** ****** *)
 
 fun
 aux_impdecl3
+( env0:
+! xctpenv
+, dcl0: h0dcl): void =
+let
+//
+val-
+H0Cimpdecl3
+( tok0
+, stm0
+, mopt
+, htqa
+, hdc0, htia
+, hfas, h0e1) = dcl0.node()
+//
+in
+case+ htia of
+|
+HTIARGnone _ =>
+aux_impdecl3_none(env0, dcl0)
+|
+HTIARGsome _ =>
+aux_impdecl3_some(env0, dcl0)
+end // end of [aux_impdecl3]
+
+and
+aux_impdecl3_none
 ( env0:
 ! xctpenv
 , dcl0: h0dcl): void =
@@ -650,13 +717,57 @@ xatsctp_h0exp
 ( env0, h0e1 ) where
 {
 val ( ) =
-println!("HIMPDECL3.body = ", h0e1)
+println!
+( "HIMPDECL3.body = ", h0e1 )
 }
-end // end of [aux_impdecl3]
+end // end of [aux_impdecl3_none]
+
+and
+aux_impdecl3_some
+( env0:
+! xctpenv
+, dcl0: h0dcl): void =
+let
+//
+val-
+H0Cimpdecl3
+( tok0
+, stm0
+, mopt
+, htqa
+, hdc0, htia
+, hfas, h0e1) = dcl0.node()
+//
+val ( ) =
+println!
+("HIMPDECL3.hdc0 = ", hdc0)
+//
+val ( ) =
+println!
+("HIMPDECL3.htqa = ", htqa)
+val ( ) =
+println!
+("HIMPDECL3.htia = ", htia)
+//
+val ( ) =
+println!
+("HIMPDECL3.hfas = ", hfas)
+//
+in
+(*
+{
+val ( ) =
+println!
+( "HIMPDECL3.body = ", h0e1 )
+}
+*)
+end // end of [aux_impdecl3_some]
 
 (* ****** ****** *)
 
 in(* in-of-local *)
+
+(* ****** ****** *)
 
 implement
 xatsctp_h0dcl
@@ -693,6 +804,40 @@ println!
 *)
 //
 } (*where*)//end of [xatsctp_h0dcl]
+
+(* ****** ****** *)
+
+implement
+xatsctp_h0dcl_timp
+(env0, dcl0) =
+let
+val
+loc0 = dcl0.loc()
+in(* in-of-let *)
+//
+case+
+dcl0.node() of
+//
+|
+H0Cfundecl _ =>
+aux_fundecl_fun(env0, dcl0)
+//
+|
+H0Cimpdecl3 _ =>
+aux_impdecl3_none(env0, dcl0)
+//
+| _ (* else *) =>
+{
+(*
+val () =
+println!
+("xatsctp_h0dcl_timp: dcl0 = ", dcl0)
+*)
+}
+//
+end (*let*) // end of [xcomp01_h0dcl_timp]
+
+(* ****** ****** *)
 
 end // end of [local]
 

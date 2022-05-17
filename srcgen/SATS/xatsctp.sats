@@ -295,6 +295,12 @@ xatsctp_h0dclist
 (* ****** ****** *)
 //
 fun
+xatsctp_h0dcl_timp
+( env0:
+! xctpenv, dcl0: h0dcl ): void
+(* ****** ****** *)
+//
+fun
 the_XATSHOME_get((*void*)): string
 //
 (* ****** ****** *)
