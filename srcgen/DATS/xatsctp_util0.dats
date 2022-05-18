@@ -59,6 +59,13 @@ compare with cmp_symbol_symbol
 #symload
 fprint with $STM.fprint_stamp
 (* ****** ****** *)
+//
+implement
+fprint_val<htvar> = fprint_htvar
+implement
+fprint_val<h0typ> = fprint_h0typ
+//
+(* ****** ****** *)
 fun
 htcst_compare
 ( htc1: htcst
@@ -613,26 +620,26 @@ val
 targ =
 f0_targ(hdc0.type())
 //
-(*
+// (*
 val () =
 println!
 ("hdcon_ctpize_tsub: htvs = ", htvs)
 val () =
 println!
 ("hdcon_ctpize_tsub: targ = ", targ)
-*)
+// *)
 //
 in(*in-of-let*)
 //
 let
 val
-l1ts = auxhats(targ)
+l1ts = f0_hats(targ)
 in(*in-of-let*)
 L1DTCdtcon(hdc0, l1ts)
 end where
 {
 fun
-auxhats
+f0_hats
 ( h0ts
 : h0typlst): l1ctplst =
 (
@@ -647,7 +654,7 @@ let
 val
 l1t1 = auxhat0(h0t1)
 in
-list_cons(l1t1, auxhats(h0ts))
+list_cons(l1t1, f0_hats(h0ts))
 end where
 {
 val h0t1 =
@@ -737,7 +744,7 @@ end where
 val
 opt = the_ltnmmap_search_opt(h0t0)
 }
-}(*where*) // end-of-[hdcon_ctpize_tsub]
+}(*where*)//end-of-[hdcon_ctpize_tsub]
 //
 (* ****** ****** *)
 
@@ -966,15 +973,15 @@ H0Ttyrec
 , npf1
 , lhts) = h0t0.node()
 //
+val
+knd0 = tyrec2bxty(knd0)
+//
 val () =
 println!
 ("f_tyrec: knd0 = ", knd0)
 val () =
 println!
 ("f_tyrec: npf1 = ", npf1)
-//
-val
-knd0 = tyrec2bxty(knd0)
 //
 val lhts =
 (

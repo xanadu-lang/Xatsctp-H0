@@ -157,20 +157,21 @@ fprint!
 (out, "L1CTPltnm(", ltnm, ")")
 //
 |
-L1CTPtyrec
-( bxty, l1ts )  =>
-fprint!
-( out
-, "L1CTPtyrec(", bxty, "; ", l1ts, ")"
-)
-|
 L1CTPtydat
 ( htc1
 , h0ts, dtcs ) =>
 fprint!
 ( out
 , "L1CTPtydat("
-, htc1, "; ", h0ts, "; ", "...", ")")
+, htc1, "; ", h0ts, "; ", "...", ")"
+)
+|
+L1CTPtyrec
+( bxty, l1ts )  =>
+fprint!
+( out
+, "L1CTPtyrec(", bxty, "; ", l1ts, ")"
+)
 |
 L1CTPtyapp
 ( l1t1, l1ts ) =>
@@ -184,7 +185,7 @@ implement
 fprint_val<l1ctp> = fprint_l1ctp
 implement
 fprint_val<labl1ctp> = fprint_labl1ctp
-} (*where*)//end of [fprint_l1ctp]
+} (*where*) // end of [fprint_l1ctp]
 //
 (* ****** ****** *)
 //
@@ -227,7 +228,7 @@ implement
 fprint_val<l1ctp> = fprint_l1ctp
 in
 $S2E.fprint_slabeled<l1ctp>(out, lx0)
-end (* let *)//end of [fprint_labl1ctp]
+end (*let*) // end of [fprint_labl1ctp]
 //
 end (*local*) // end of [local]
 //
