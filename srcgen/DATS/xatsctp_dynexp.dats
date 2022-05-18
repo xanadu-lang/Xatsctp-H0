@@ -910,7 +910,7 @@ list_cons(x0, xs) =>
   xatsctp_hvaldeclist(env0, xs)
 ) where
 {
-val () = xatsctp_hvaldecl(env0, x0)
+  val () = xatsctp_hvaldecl( env0, x0 )
 }
 ) (*case*) // end of [xatsctp_hvaldeclist]
 
@@ -981,7 +981,7 @@ list_cons(x0, xs) =>
   xatsctp_hfundeclist(env0, xs)
 ) where
 {
-val () = xatsctp_hfundecl(env0, x0)
+  val () = xatsctp_hfundecl( env0, x0 )
 }
 ) (*case*) // end of [xatsctp_hvaldeclist]
 

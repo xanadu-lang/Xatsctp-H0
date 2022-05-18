@@ -1229,9 +1229,9 @@ val+
 list_cons
 (arg0, args) = args where
 {
-  val args =
-    parse_commarglst(argc, argv)
-  // end of [val]
+  val
+  args =
+  parse_commarglst( argc, argv )
 } (* end of [val] *)
 //
 var

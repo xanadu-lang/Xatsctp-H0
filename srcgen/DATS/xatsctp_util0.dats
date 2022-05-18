@@ -709,10 +709,7 @@ if
 i0 >= npf1
 then h0ts else
 (
-case+ h0ts of
-|
-list_nil
-((*nil*)) => list_nil()
+case- h0ts of
 |
 list_cons
 (_, h0ts) => f1_drop(i0+1, h0ts)
@@ -737,9 +734,8 @@ in
   l1tnm_ctpize(ltnm)
 end where
 {
-  val
-  opt =
-  the_ltnmmap_search_opt(h0t0)
+val
+opt = the_ltnmmap_search_opt(h0t0)
 }
 }(*where*) // end-of-[hdcon_ctpize_tsub]
 //
@@ -970,7 +966,15 @@ H0Ttyrec
 , npf1
 , lhts) = h0t0.node()
 //
-val knd0 = 0(*boxity*)
+val () =
+println!
+("f_tyrec: knd0 = ", knd0)
+val () =
+println!
+("f_tyrec: npf1 = ", npf1)
+//
+val
+knd0 = tyrec2bxty(knd0)
 //
 val lhts =
 (
@@ -979,22 +983,22 @@ val lhts =
 fun
 f1_lst
 ( i0: int
-, xs
+, lhts
 : labh0typlst):labh0typlst =
 (
 if
-i0 < npf1
-then xs else
+i0 >= npf1
+then lhts else
 (
-case- xs of
+case- lhts of
 |
 list_cons
-( x1, xs ) => f1_lst(i0+1, xs)
+( _, lhts ) => f1_lst(i0+1, lhts)
 )
 ) (* end of [f1_lst] *)
 }
 in
-L1CTPtyrec(knd0, auxlhats(lhts))
+L1CTPtyrec( knd0, auxlhats(lhts) )
 end(*let*)//end of [f0_tyrec]
 //
 } (*where*) // end of [auxh0t0]
@@ -1017,8 +1021,7 @@ in
 end where
 {
 val
-opt =
-the_ltnmmap_search_opt(h0t0)
+opt = the_ltnmmap_search_opt(h0t0)
 }
 //
 and
@@ -1061,7 +1064,7 @@ let
 val+
 SLABELED(l1, h0t1) = lht1
 val llt1 =
-SLABELED(l1, auxh0t0(h0t1))
+SLABELED(l1, auxhat0(h0t1))
 in
 let
 val
