@@ -307,7 +307,6 @@ _(*non-L1CTPtyrec*) => ((*void*))
 }
 ) (*case*) // end of [ f0_main3 ]
 //
-//
 fun
 f0_main4
 ( out

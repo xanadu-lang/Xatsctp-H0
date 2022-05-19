@@ -75,14 +75,84 @@ my_main1
 ( out
 : FILEref,
   tnms:
-! l1tnmlst_vt): void = ()
+! l1tnmlst_vt): void =
+(
+case+ tnms of
+|
+list_vt_nil
+((*void*)) => ()
+|
+list_vt_cons
+(tnm1, tnms) =>
+(
+  f1_tnm1(tnm1)
+; my_main1(out, tnms)
+) where
+{
+fun
+f1_tnm1
+(tnm1: l1tnm): void =
+case+
+tnm1.ltyp() of
+|
+L1TYPname(name) =>
+let
+val stmp = tnm1.stamp()
+in(*in-of-let*)
+//
+fprintln!
+(out, "typedef", " ", name, " ", "xtnm_", stmp, ";")
+//
+end(*let*)//end-of-[L1TYPname]
+|
+_(*non-L1TYPname*) => ((*void*))
+}
+) (*case*) // end of [ my_main1 ]
 //
 fun
 my_main2
 ( out
 : FILEref,
   tnms:
-! l1tnmlst_vt): void = ()
+! l1tnmlst_vt): void =
+(
+case+ tnms of
+|
+list_vt_nil
+((*void*)) => ()
+|
+list_vt_cons
+(tnm1, tnms) =>
+(
+  f1_tnm1(tnm1)
+; my_main2(out, tnms)
+) where
+{
+//
+fun
+f1_tnm1
+(tnm1: l1tnm): void =
+case+
+tnm1.ltyp() of
+|
+L1TYPtydat
+( htc1
+, h0ts, dtcs) =>
+let
+val
+stmp = tnm1.stamp()
+in(*in-of-let*)
+//
+fprintln!
+( out, "typedef"
+, " ", "struct{xcmp_ctag_t ctag0;}", " ", "xtnm_", stmp, ";")
+//
+end(*let*)//end-of-[L1TYPtydat]
+|
+_(*non-L1TYPtydat*) => ((*void*))
+//
+} (*where*) // endof [ my_main2 ]
+)
 //
 fun
 my_main3
@@ -96,7 +166,120 @@ my_main4
 ( out
 : FILEref,
   tnms:
-! l1tnmlst_vt): void = ()
+! l1tnmlst_vt): void =
+(
+case+ tnms of
+|
+list_vt_nil
+((*void*)) => ()
+|
+list_vt_cons
+(tnm1, tnms) =>
+(
+  f1_tnm1(tnm1)
+; my_main4(out, tnms)
+) where
+{
+fun
+f1_tnm1
+(tnm1: l1tnm): void =
+case+
+tnm1.ltyp() of
+|
+L1TYPtydat
+( htc1
+, h0ts, dtcs) =>
+(
+  g1_dtcs(dtcs)) where
+{
+//
+val stmp = tnm1.stamp()
+//
+fun
+g1_dtc1
+(dtc1: l1dtc): void =
+let
+val+
+L1DTCdtcon
+(hdc1, args) = dtc1
+//
+fun
+g2_tnm1
+( argi: int
+, tnm1: l1tnm): void =
+{
+//
+val
+l1t1 = tnm1.ltyp()
+val
+bxty = l1typ2bxty(l1t1)
+//
+val () =
+let
+val
+stmp = tnm1.stamp()
+in
+fprint!(out, "xtnm_", stmp)
+end
+//
+val () =
+(
+if
+(bxty = 0)
+then
+fprint!(out, " ", "carg", argi, ";")
+else
+fprint!(out, " ", "*carg", argi, ";")
+)
+//
+} (* end of [g2_tnms1] *)
+//
+fun
+g2_tnms
+( argi: int
+, args: l1tnmlst): void =
+(
+case+ args of
+|
+list_nil() => ()
+|
+list_cons
+(tnm1, args) =>
+(
+g2_tnm1(argi, tnm1); g2_tnms(argi+1, args)
+)
+)
+//
+val ctag =
+$H0E.hdcon_get_ctag(hdc1)
+//
+in
+fprint!
+( out
+, "typedef", " "
+, "struct{xcmp_ctag_t ctag0;");
+g2_tnms(  1(* argi *), args  );
+fprintln!
+( out, "}", " ", "xtnm_", stmp, "_", ctag, ";")
+end (*let*) // end of [g1_dtc1]
+//
+fun
+g1_dtcs
+(dtcs: l1dtclst): void =
+(
+case+ dtcs of
+|
+list_nil() => ()
+|
+list_cons(dtc1, dtcs) =>
+(g1_dtc1(dtc1); g1_dtcs(dtcs))
+)
+//
+}(*where*)//end-of[L1CTPtydat]
+|
+_(*non-L1CTPtydat*) => ((*void*))
+}
+) (*case*) // end of [ my_main4 ]
 //
 fun
 my_main5

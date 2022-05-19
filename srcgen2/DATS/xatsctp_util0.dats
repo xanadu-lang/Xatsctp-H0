@@ -102,6 +102,10 @@ case+ knd0 of
 (* ****** ****** *)
 //
 implement
+l1tnm2bxty(ltnm) =
+l1typ2bxty(ltnm.ltyp())
+//
+implement
 l1typ2bxty(l1t0) =
 (
 case+ l1t0 of

@@ -191,7 +191,7 @@ l1tnm_get_stamp(l1tnm): stamp
 //
 fun
 l1tnm_set_ltyp
-(ltnm: l1tnm, lctp: l1typ): void
+(ltnm: l1tnm, l1t0: l1typ): void
 //
 fun
 l1tnm_make_htyp(h0typ): l1tnm
@@ -205,9 +205,10 @@ l1tnm_make_htyp(h0typ): l1tnm
 #symload .stamp with l1tnm_get_stamp
 //
 (* ****** ****** *)
-
+//
+fun l1tnm2bxty(l1tnm): int
 fun l1typ2bxty(l1typ): int
-
+//
 (* ****** ****** *)
 //
 fun
