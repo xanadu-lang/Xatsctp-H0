@@ -110,15 +110,15 @@ append<a>(xs1, concat(xss))
 val xs =
 list_nil()
 val xs =
-list_cons<int>(1, xs)
+list_cons<sint>(1, xs)
 val xs =
-list_cons(2, xs)
+list_cons<sint>(2, xs)
 
 val xss = list_nil()
 val xss = list_cons(xs, xss)
 val xss = list_cons(xs, xss)
 
-val flat = concat<int>( xss )
+val flat = concat<sint>( xss )
 
 (* ****** ****** *)
 
@@ -128,6 +128,8 @@ val xs =
 list_cons<dflt>(1.1, xs)
 val xs =
 list_cons<dflt>(2.2, xs)
+val xs =
+list_cons<dflt>(3.3, xs)
 
 val xss = list_nil()
 val xss = list_cons(xs, xss)
