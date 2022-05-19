@@ -800,7 +800,23 @@ $TRD3X.tread3x_package(p3kg)
 //
 (* ****** ****** *)
 //
-val () = xatsctp_program(h0pkg)
+val () =
+let
+val () =
+xatsctp_program(h0pkg)
+in
+//
+let
+val out =
+outchan_get_filref
+(st0.outchan)
+val ( ) =
+the_ltnmmap_ctpize()
+in
+  the_ltnmmap_temit(out)
+end (*let*)
+//
+end (*let*) // end-of-[val]
 //
 (* ****** ****** *)
 //

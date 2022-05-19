@@ -1231,13 +1231,19 @@ ltnmlst_sort_htsz
 (auxmain(kxs, res))) where
 {
 //
-val res = list_vt_nil(*void*)
+val res =
+list_vt_nil(*void*)
 //
-val map =
+val kxs = kxs where
+{
+val
+map =
 $UN.ptr0_get<ltnmmap>(the_ltnmmap)
-val kxs = linmap_listize1<key,itm>(map)
+val
+kxs = linmap_listize1<key,itm>(map)
 val ( ) =
 $UN.ptr0_set<ltnmmap>(the_ltnmmap, map)
+}
 //
 fun
 auxmain

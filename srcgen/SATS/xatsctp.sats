@@ -277,9 +277,11 @@ the_ltnmmap_listize
 (* ****** ****** *)
 //
 fun
-l1tnm_temit(ltnm:l1tnm): void
+l1tnm_temit
+(out:FILEref, ltnm:l1tnm): void
+//
 fun
-the_ltnmmap_temit((*nil*)): void
+the_ltnmmap_temit(FILEref): void
 //
 (* ****** ****** *)
 //
