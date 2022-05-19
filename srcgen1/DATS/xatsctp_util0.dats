@@ -438,6 +438,7 @@ compare
 (tnm1.stamp(), tnm2.stamp())
 *)
 (* ****** ****** *)
+//
 extern
 fun
 the_ltnmmap_search_ref
