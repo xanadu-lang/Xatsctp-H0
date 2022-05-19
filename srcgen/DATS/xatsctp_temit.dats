@@ -64,6 +64,25 @@ l1tnm_temit
 )
 //
 (* ****** ****** *)
+//
+fun
+l1ctp2bxty
+(lctp: l1ctp): int =
+(
+case+ lctp of
+|
+L1CTPltnm
+(  ltnm  ) =>
+l1ctp2bxty(ltnm.lctp())
+|
+L1CTPtydat _ => 1(*boxed*)
+|
+L1CTPtyrec(knd0, _) => knd0
+//
+| _(*rest-of-l1ctp*) => 0(*unboxed*)
+)
+//
+(* ****** ****** *)
 
 implement
 the_ltnmmap_temit
@@ -220,6 +239,10 @@ fprint!(out, "L1TNM_", stmp, " ")
 end
 )
 //
+val
+bxty =
+l1ctp2bxty(ctp1)
+//
 val () =
 let
 val
@@ -230,7 +253,12 @@ case+ opt of
 ~None_vt() => ()
 |
 ~Some_vt(int) =>
-fprint!(out, "_xlab_", int, "_", ";")
+if
+(bxty = 0)
+then
+fprint!(out, "xlab$", int, ";")
+else
+fprint!(out, "*xlab$", int, ";")
 end (*let*) // end of [val]
 //
 val () =
@@ -243,7 +271,12 @@ case+ opt of
 ~None_vt() => ()
 |
 ~Some_vt(sym) =>
-fprint!(out, "_xlab_", sym, "_", ";")
+if
+(bxty = 0)
+then
+fprint!(out, "xlab_", sym, ";")
+else
+fprint!(out, "*xlab_", sym, ";")
 end (*let*) // end of [val]
 //
 } where
@@ -333,8 +366,19 @@ in
 fprint!(out, "L1TNM_", stmp)
 end
 )
+//
+val
+bxty = l1ctp2bxty(l1t1)
+//
 val () =
+(
+if
+(bxty = 0)
+then
 fprint!(out, " ", "carg", argi, ";")
+else
+fprint!(out, " ", "*carg", argi, ";")
+)
 }
 fun
 g1_l1ts
