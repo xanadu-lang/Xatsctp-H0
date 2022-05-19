@@ -139,6 +139,7 @@ L1DTCdtcon of (hdcon, l1tnmlst)
 //
 where
 labl1tnm = slabeled(l1tnm)
+and l1typlst = List0(l1typ)
 and l1dtclst = List0(l1dtc)
 and labl1tnmlst = List0(labl1tnm)
 //
@@ -259,7 +260,10 @@ h0typ_ltnmize_rec1(h0typ): l1tnm
 (* ****** ****** *)
 //
 fun
-l1tnm_ltypize(l1tnm): l1typ
+l1tnm_ltypize_rec0(l1tnm): void
+fun
+l1tnm_ltypize_rec1(l1tnm): l1tnm
+//
 fun
 h0typ_ltypize_rec1(h0typ): l1typ
 //
