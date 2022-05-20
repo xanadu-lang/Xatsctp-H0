@@ -131,8 +131,8 @@ clean:: ; $(RMF) xatsctp_dats.c
 ######
 
 cleanall:: clean
-cleanall:: ; $(RMF) ./bin/xatsctp
-cleanall:: ; $(RMF) ./bin/xatsctp.sh
+cleanall:: ; $(RMF) ./../bin/xatsctp
+cleanall:: ; $(RMF) ./../bin/xatsctp.sh
 cleanall:: ; $(RMF) $(XATSOPT)/lib/libxatsopt.a
 cleanall:: ; $(MAKE) -C $(XATSOPT)/srcgen/xcomp cleanall
 

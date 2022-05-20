@@ -66,8 +66,8 @@ LIBRARY:=-L"$(XATSOPT)/lib" -lxatsopt
 ######
 #
 all:: \
-lxatsopt
-lxatsopt: ; \
+library
+library: ; \
 (cd $(XATSOPT)/srcgen/xcomp && $(MAKE) libxatsopt)
 #
 ######
@@ -80,6 +80,15 @@ $(OBJSATS) $(OBJDATS) ; \
 $(PATSCC) -cleanaft -o ./../bin/xatsctp \
 $(INCLUDE) $(CFLAGS) $(GCFLAG) $^ $(LIBGC) $(LIBRARY)
 #
+######
+
+libxatsctp: \
+$(OBJSATS) $(OBJDATS) \
+BUILD/libxatsctp_dats.o; \
+($(AR) -r $@.a $^ && $(MVF) $@.a ./../../lib)
+BUILD/libxatsctp_dats.o: \
+DATS/xatsctp.dats; $(PATSCC) -DATS __LIBXATSCTP__ -o $@ -c $<
+
 ######
 
 BUILD/%_sats.c: \
@@ -131,8 +140,9 @@ clean:: ; $(RMF) xatsctp_dats.c
 ######
 
 cleanall:: clean
-cleanall:: ; $(RMF) ./bin/xatsctp
-cleanall:: ; $(RMF) ./bin/xatsctp.sh
+cleanall:: ; $(RMF) ./../bin/xatsctp
+cleanall:: ; $(RMF) ./../bin/xatsctp.sh
+cleanall:: ; $(RMF) ./../lib/libxatsctp.a
 cleanall:: ; $(RMF) $(XATSOPT)/lib/libxatsopt.a
 cleanall:: ; $(MAKE) -C $(XATSOPT)/srcgen/xcomp cleanall
 
