@@ -86,6 +86,62 @@ end // end of [local]
 
 (* ****** ****** *)
 //
+extern
+fun
+echo_argc_argv
+  {n:nat}
+( out: FILEref
+, argc: int(n), argv: !argv(n)): void
+//
+implement
+echo_argc_argv
+{n}
+(out, argc, argv) =
+(
+loop(argv, 0(*i0*))
+) where
+{
+fun
+loop
+{ i:nat
+| i <= n} .<n-i>.
+( argv
+: !argv(n)
+, i0: int(i)): void =
+(
+if
+(i0 >= argc)
+then
+fprintln!(out)
+else
+let
+val () =
+if
+(i0 > 0)
+then
+fprint(out, ' ')
+in
+fprint(out, argv[i0]); loop(argv, i0+1)
+end (*let*) // end of [else]
+)
+} (* end of [ech0_argc_argv] *)
+//
+(* ****** ****** *)
+//
+// HX-2022-05-20:
+//
+#ifdef
+__LIBXATSCTP__
+#then
+(* ****** ****** *)
+#define
+ATS_MAINATSFLAG 1
+#define
+ATS_DYNLOADNAME "libxatsctp_dynloadall"
+(* ****** ****** *)
+#else
+(* ****** ****** *)
+//
 implement
 main0(argc, argv) =
 (
@@ -116,10 +172,12 @@ prerrln!
 // (*
 val out = stderr_ref
 val ( ) =
-$XATSOPT.echo_argc_argv(out, argc, argv)
+echo_argc_argv(out, argc, argv)
 // *)
 } (* end of [main0] *)
 //
+(* ****** ****** *)
+#endif // #ifdef(__LIBXATSCTP__)
 (* ****** ****** *)
 
 (* end of [xats_xatsctp.dats] *)

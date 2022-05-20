@@ -4,8 +4,13 @@
 #
 ######
 
+AR=ar
+CP=cp
+MV=mv
 CC=gcc
 SED=sed
+CPF=cp -f
+MVF=mv -f
 RMF=rm -f
 
 ######
@@ -85,9 +90,9 @@ $(INCLUDE) $(CFLAGS) $(GCFLAG) $^ $(LIBGC) $(LIBRARY)
 libxatsctp: \
 $(OBJSATS) $(OBJDATS) \
 BUILD/libxatsctp_dats.o; \
-($(AR) -r $@.a $^ && $(MVF) $@.a ./../../lib)
-BUILD/libxatsctp_dats.o: \
-DATS/xatsctp.dats; $(PATSCC) -DATS __LIBXATSCTP__ -o $@ -c $<
+($(AR) -r $@.a $^ && $(MVF) $@.a ./../lib/.)
+BUILD/libxatsctp_dats.o: DATS/xatsctp.dats; \
+$(PATSCC) $(INCLUDE) -DATS __LIBXATSCTP__ -o $@ -c $<
 
 ######
 
