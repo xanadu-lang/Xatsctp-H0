@@ -494,13 +494,13 @@ the_ltnmmap_insert_exn
 (* ****** ****** *)
 
 implement
-h0typ_ltnmize_rec0
+h0typ_ltnmize_rec1
   ( h0t0 ) =
 (
 //
 case+ opt of
 | ~
-Some_vt _ => ()
+Some_vt ltnm => ltnm
 | ~
 None_vt _ =>
 let
@@ -511,8 +511,19 @@ l1tnm_make_htyp
 val () =
 the_ltnmmap_insert_any
   (  h0t0, ltnm  )
+in
+let
+val () = auxh0t0(h0t0) in ltnm
+end
+end
 //
-in(*in-of-let*)
+) where
+{
+//
+fun
+auxh0t0
+(h0t0: h0typ): void =
+(
 //
 case+
 h0t0.node() of
@@ -541,16 +552,7 @@ H0Ttyext//HX: is it abstract?
 | H0Tnone0() => ((*void*))
 | H0Tnone1(h0t1) => ((*void*))
 //
-end(*let*) // end of [None_vt]
-) where
-{
-//
-fun
-auxh0t0
-(h0t0: h0typ): void =
-(
-  h0typ_ltnmize_rec0( h0t0 )
-)
+)(*case*) // end of [ auxh0t0 ]
 //
 and
 auxh0ts
@@ -585,25 +587,8 @@ end
 val
 opt = the_ltnmmap_search_opt(h0t0)
 //
-}(*where*)//end of [h0typ_ltnmize_rec0]
+}(*where*)//end of [h0typ_ltnmize_rec1]
 
-implement
-h0typ_ltnmize_rec1
-  ( h0t0 ) =
-let
-//
-val () =
-h0typ_ltnmize_rec0(h0t0)
-//
-val
-opt = the_ltnmmap_search_opt(h0t0)
-//
-in
-//
-case- opt of ~Some_vt(ltnm) => ltnm
-//
-end(*let*)//end of [h0typ_ltnmize_rec1]
-//
 (* ****** ****** *)
 //
 implement

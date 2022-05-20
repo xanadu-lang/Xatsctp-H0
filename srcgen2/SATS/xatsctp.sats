@@ -253,8 +253,10 @@ fprint_labl1tnm: fprint_type(labl1tnm)
 //
 (* ****** ****** *)
 //
+(*
 fun
 h0typ_ltnmize_rec0(h0typ): void
+*)
 fun
 h0typ_ltnmize_rec1(h0typ): l1tnm
 //
