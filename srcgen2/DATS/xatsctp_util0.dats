@@ -41,7 +41,7 @@ UN = "prelude/SATS/unsafe.sats"
 (* ****** ****** *)
 //
 #include
-"./../HATS/libxatsopt.hats"
+"./../HATS/libxatsctp.hats"
 //
 (* ****** ****** *)
 //
@@ -51,10 +51,16 @@ UN = "prelude/SATS/unsafe.sats"
 #staload "./../SATS/xatsctp.sats"
 //
 (* ****** ****** *)
+macdef
+cmp_label_label =
+$LAB.cmp_label_label
+(* ****** ****** *)
 #symload
-compare with cmp_stamp_stamp
+compare
+with $STM.cmp_stamp_stamp
 #symload
-compare with cmp_symbol_symbol
+compare
+with $SYM.cmp_symbol_symbol
 (* ****** ****** *)
 #symload
 fprint with $STM.fprint_stamp
@@ -88,14 +94,19 @@ tyrec2bxty(knd0) =
 (
 case+ knd0 of
 //
-| TYRECbox0 _ => 1
-| TYRECbox1 _ => 1
+|
+$S2E.TYRECbox0 _ => 1
+|
+$S2E.TYRECbox1 _ => 1
 //
-| TYRECflt0 _ => 0
+|
+$S2E.TYRECflt0 _ => 0
 (*
-| TYRECflt1 _ => 0
+|
+$S2E.TYRECflt1 _ => 0
 *)
-| TYRECflt2 _ => 0
+|
+$S2E.TYRECflt2 _ => 0
 //
 ) (*case*) // end of [tyrec2bxty]
 //
@@ -343,8 +354,10 @@ auxlht
 , ly
 : labh0typ): int =
 let
-val+SLABELED(l1, x0) = lx
-val+SLABELED(l2, y0) = ly
+val+
+$S2E.SLABELED(l1, x0) = lx
+val+
+$S2E.SLABELED(l2, y0) = ly
 in
 let
 val
@@ -562,7 +575,8 @@ list_nil() => ()
 list_cons(lht1, lhts) =>
 let
 val+
-SLABELED(lab1, h0t1) = lht1
+$S2E.SLABELED
+( lab1, h0t1 ) = lht1
 in
 (auxh0t0(h0t1); auxlhts(lhts))
 end
@@ -1084,9 +1098,9 @@ list_nil() => list_nil()
 list_cons(lht1, lhts) =>
 let
 val+
-SLABELED(l1, h0t1) = lht1
+$S2E.SLABELED(l1, h0t1) = lht1
 val llt1 =
-SLABELED(l1, auxhat0(h0t1))
+$S2E.SLABELED(l1, auxhat0(h0t1))
 in
 let
 val

@@ -43,13 +43,20 @@ UN =
 (* ****** ****** *)
 //
 #include
-"./../HATS/libxatsopt.hats"
+"./../HATS/libxatsctp.hats"
 //
+(* ****** ****** *)
+#symload
+.int with $LAB.label_get_int
+#symload
+.sym with $LAB.label_get_sym
 (* ****** ****** *)
 #symload
 fprint with $LAB.fprint_label
 #symload
 fprint with $STM.fprint_stamp
+#symload
+fprint with $SYM.fprint_symbol
 (* ****** ****** *)
 //
 #staload "./../SATS/xatsctp.sats"
@@ -240,7 +247,7 @@ end (*let*) // end of [val]
 //
 } where
 {
-  val+SLABELED(lab1, ltnm) = fld1
+val+$S2E.SLABELED(lab1, ltnm) = fld1
 }
 //
 fun

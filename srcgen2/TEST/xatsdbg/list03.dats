@@ -17,15 +17,15 @@ impltmp
 {a:type}
 mylen2
 <list(a)>
-( xs ) = auxf(xs) where
+( xs ) = ff_xs(xs) where
 {
 fun
-auxf(xs: list(a)): int =
+ff_xs(xs: list(a)): int =
 case+ xs of
 |
 list_nil() => 0
 |
-list_cons(x1, xs) => 1+auxf(xs)
+list_cons(x1, xs) => 1+ff_xs(xs)
 }
 //
 (* ****** ****** *)
@@ -37,7 +37,7 @@ list_cons(1, xs)
 val xs =
 list_cons(2, xs)
 
-val l0 = mylen2<list(int)>(xs)
+val res = mylen2<list(int)>( xs )
 
 (* ****** ****** *)
 
