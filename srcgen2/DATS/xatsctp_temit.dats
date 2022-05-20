@@ -159,7 +159,112 @@ my_main3
 ( out
 : FILEref,
   tnms:
-! l1tnmlst_vt): void = ()
+! l1tnmlst_vt): void =
+(
+case+ tnms of
+|
+list_vt_nil
+((*void*)) => ()
+|
+list_vt_cons
+(tnm1, tnms) =>
+(
+  f1_ltnm(tnm1)
+; my_main3(out, tnms)
+) where
+{
+fun
+f1_ltnm
+(tnm1: l1tnm): void =
+case+
+tnm1.ltyp() of
+|
+L1TYPtyrec
+(knd0, flds) =>
+let
+//
+val
+stmp = tnm1.stamp()
+//
+fun
+g1_fld1
+( fld1
+: labl1tnm): void =
+{
+//
+val l1t1 = ltnm.ltyp()
+val bxty = l1typ2bxty(l1t1)
+//
+val () =
+let
+val stmp = ltnm.stamp()
+in
+fprint!(out, "xtnm_", stmp, " ")
+end
+//
+val () =
+let
+val
+opt = lab1.int()
+in
+case+ opt of
+|
+~None_vt() => ()
+|
+~Some_vt(int) =>
+if
+(bxty = 0)
+then
+fprint!(out, "xlab$", int, ";")
+else
+fprint!(out, "*xlab$", int, ";")
+end (*let*) // end of [val]
+//
+val () =
+let
+val
+opt = lab1.sym()
+in
+case+ opt of
+|
+~None_vt() => ()
+|
+~Some_vt(sym) =>
+if
+(bxty = 0)
+then
+fprint!(out, "xlab_", sym, ";")
+else
+fprint!(out, "*xlab_", sym, ";")
+end (*let*) // end of [val]
+//
+} where
+{
+  val+SLABELED(lab1, ltnm) = fld1
+}
+//
+fun
+g1_flds
+( flds
+: labl1tnmlst): void =
+(
+case+ flds of
+|
+list_nil() => ()
+|
+list_cons(fld1, flds) =>
+(g1_fld1(fld1); g1_flds(flds))
+)
+//
+in(*in-of-let*)
+fprint!(out, "typedef");
+fprint!(out, " ", "struct{"); g1_flds(flds);
+fprintln!(out, "}", " ", "xtnm_", stmp, ";")
+end (*let*)//end-of-[L1CTPtyrec]
+|
+_(*non-L1CTPtyrec*) => ((*void*))
+}
+) (*case*) // end of [ my_main3 ]
 //
 fun
 my_main4
@@ -275,9 +380,9 @@ list_cons(dtc1, dtcs) =>
 (g1_dtc1(dtc1); g1_dtcs(dtcs))
 )
 //
-}(*where*)//end-of[L1CTPtydat]
+}(*where*)//end-of[L1TYPtydat]
 |
-_(*non-L1CTPtydat*) => ((*void*))
+_(*non-L1TYPtydat*) => ((*void*))
 }
 ) (*case*) // end of [ my_main4 ]
 //
@@ -286,7 +391,48 @@ my_main5
 ( out
 : FILEref,
   tnms:
-! l1tnmlst_vt): void = ()
+! l1tnmlst_vt): void =
+(
+case+ tnms of
+|
+list_vt_nil
+((*void*)) => ()
+|
+list_vt_cons
+(tnm1, tnms) =>
+(
+  f1_ltnm(tnm1)
+; my_main5(out, tnms)
+) where
+{
+fun
+f1_ltnm
+(tnm1: l1tnm): void =
+let
+val
+l1t1 = tnm1.ltyp()
+in
+//
+case+ l1t1 of
+|
+L1TYPname _ => ()
+|
+L1TYPtydat _ => ()
+|
+L1TYPtyrec _ => ()
+|
+_(*rest-of-l1typ*) =>
+let
+val stmp = tnm1.stamp()
+in
+fprintln!
+(out, "// typedef", " ", "xtnm_", stmp, "=", l1t1)
+end (*let*)//end of [L1CTP...]
+//
+end (*let*)// end of [f1_ltnm]
+}
+) (*case*) // end of [ my_main5 ]
+
 //
 in(*in-of-local*)
 
