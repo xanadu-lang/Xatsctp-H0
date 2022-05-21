@@ -119,11 +119,14 @@ fprint_val<h0typ> = fprint_h0typ
 //
 implement
 fprint_val<h0pat> = fprint_h0pat
-implement
-fprint_val<hfarg> = fprint_hfarg
 //
 implement
 fprint_val<h0exp> = fprint_h0exp
+//
+(* ****** ****** *)
+//
+implement
+fprint_val<hfarg> = fprint_h0farg
 //
 (* ****** ****** *)
 implement
@@ -135,34 +138,34 @@ extern
 fun
 xatsctp_hvaldecl
 ( env0:
-! xctpenv, hvd0: hvaldecl): void
+! xctpenv, hvd0: h0valdecl): void
 extern
 fun
 xatsctp_hvaldeclist
 ( env0:
-! xctpenv, hvds: hvaldeclist): void
+! xctpenv, hvds: h0valdeclist): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_hvardecl
 ( env0:
-! xctpenv, hvd0: hvardecl): void
+! xctpenv, hvd0: h0vardecl): void
 extern
 fun
 xatsctp_hvardeclist
 ( env0:
-! xctpenv, hvds: hvardeclist): void
+! xctpenv, hvds: h0vardeclist): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_hfundecl
 ( env0:
-! xctpenv, hfd0: hfundecl): void
+! xctpenv, hfd0: h0fundecl): void
 extern
 fun
 xatsctp_hfundeclist
 ( env0:
-! xctpenv, hfds: hfundeclist): void
+! xctpenv, hfds: h0fundeclist): void
 (* ****** ****** *)
 
 implement
@@ -265,10 +268,10 @@ xatsctp_hfarg
 case+
 hfa0.node() of
 //
-| HFARGnone0() => ()
-| HFARGnone1(_) => ()
+| H0FARGnone0() => ()
+| H0FARGnone1(_) => ()
 //
-| HFARGnpats
+| H0FARGnpats
   (npf1, h0ps) =>
 (
   xatsctp_h0patlst(env0, h0ps)
@@ -860,7 +863,7 @@ xatsctp_hvaldecl
 let
 //
 val+
-HVALDECL
+H0VALDECL
 ( rcd ) = x0
 //
 (*
@@ -871,14 +874,14 @@ val def2 = rcd.def
 //
 val ( ) =
 println!
-( "HVALDECL.pat = ", pat1 )
+( "H0VALDECL.pat = ", pat1 )
 //
 val ( ) =
 xatsctp_h0pat( env0, pat1 )
 //
 val ( ) =
 println!
-( "HVALDECL.def = ", def2 )
+( "H0VALDECL.def = ", def2 )
 //
 in
 //
@@ -914,7 +917,7 @@ xatsctp_hfundecl
 let
 //
 val+
-HFUNDECL
+H0FUNDECL
   (rcd) = hfd0
 //
 (*
@@ -926,7 +929,7 @@ val def2 = rcd.def
 //
 val ( ) =
 println!
-( "HFUNDECL.hdc = ", hdc0 )
+( "H0FUNDECL.hdc = ", hdc0 )
 //
 val ( ) =
 (
@@ -934,7 +937,7 @@ case hag1 of
 |
 None() =>
 println!
-("HFUNDECL.hag = ", "None(", ")" )
+("H0FUNDECL.hag = ", "None(", ")" )
 |
 Some(hfas) =>
 (
@@ -943,12 +946,12 @@ Some(hfas) =>
 {
 val ( ) =
 println!
-("HFUNDECL.hag = ", "Some(", hfas, ")")
+("H0FUNDECL.hag = ", "Some(", hfas, ")")
 }
 ) (*case*) // end-of-val
 //
 val ( ) =
-println!( "HFUNDECL.def = ", def2 )
+println!( "H0FUNDECL.def = ", def2 )
 //
 in
 //

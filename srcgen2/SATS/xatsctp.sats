@@ -97,15 +97,12 @@ typedef h0typlst = $H0E.h0typlst
 //
 (* ****** ****** *)
 //
-typedef hdcon = $H0E.hdcon
-typedef hdcst = $H0E.hdcst
-typedef hdvar = $H0E.hdvar
+typedef h0con = $H0E.h0con
+typedef h0cst = $H0E.h0cst
+typedef h0var = $H0E.h0var
 //
 typedef h0pat = $H0E.h0pat
 typedef h0patlst = $H0E.h0patlst
-//
-typedef hfarg = $H0E.hfarg
-typedef hfarglst = $H0E.hfarglst
 //
 typedef h0exp = $H0E.h0exp
 typedef h0explst = $H0E.h0explst
@@ -113,6 +110,9 @@ typedef h0explst = $H0E.h0explst
 typedef h0dcl = $H0E.h0dcl
 typedef h0dclist = $H0E.h0dclist
 //
+(* ****** ****** *)
+typedef hfarg = $H0E.h0farg
+typedef hfarglst = $H0E.h0farglst
 (* ****** ****** *)
 typedef h0comped = $H0E.h0comped
 (* ****** ****** *)
@@ -139,7 +139,7 @@ L1TYPtyapp of (l1typ, l1tnmlst)
 //
 and
 l1dtc = // HX: for datcons
-L1DTCdtcon of (hdcon, l1tnmlst)
+L1DTCdtcon of (h0con, l1tnmlst)
 //
 where
 labl1tnm = slabeled(l1tnm)

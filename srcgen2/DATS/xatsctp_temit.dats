@@ -363,7 +363,7 @@ g2_tnm1(argi, tnm1); g2_tnms(argi+1, args)
 )
 //
 val ctag =
-$H0E.hdcon_get_ctag(hdc1)
+$H0E.h0con_get_ctag(hdc1)
 //
 in
 fprint!
