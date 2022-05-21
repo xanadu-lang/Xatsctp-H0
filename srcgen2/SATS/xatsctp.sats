@@ -32,6 +32,10 @@
 // Authoremail: gmhwxiATgmailDOTcom
 //
 (* ****** ****** *)
+#define
+ATS_PACKNAME
+"ATS3.XANADU.libxatsctp"
+(* ****** ****** *)
 //
 #define
 XATSOPT_targetloc
