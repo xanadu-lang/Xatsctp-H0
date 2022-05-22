@@ -101,7 +101,7 @@ in(* in-of-let *)
 //
 case+ l1t0 of
 |
-L1TYPnone() =>
+L1CTPnone() =>
 let
 val h0t0 = x0.htyp()
 val stmp = x0.stamp()
@@ -109,75 +109,75 @@ in
 fprint!
 ( out
 , "L1TNM(", stmp, "; ", h0t0, ")")
-end // end of [L1TYPnone]
+end // end of [L1CTPnone]
 |
-_(* non-L1TYPnone*) =>
+_(* non-L1CTPnone*) =>
 let
 val stmp = x0.stamp()
 in
 fprint!
 ( out
 , "L1TNM(", stmp, "; ", l1t0, ")")
-end // end of [non-L1TYPnone]
+end // end of [non-L1CTPnone]
 //
 end (*let*) // end of [fprint_l1tnm]
 //
 (* ****** ****** *)
 //
 implement
-print_l1typ(x0) =
-fprint_l1typ(stdout_ref, x0)
+print_l1ctp(x0) =
+fprint_l1ctp(stdout_ref, x0)
 implement
-prerr_l1typ(x0) =
-fprint_l1typ(stderr_ref, x0)
+prerr_l1ctp(x0) =
+fprint_l1ctp(stderr_ref, x0)
 //
 (* ****** ****** *)
 //
 implement
-fprint_l1typ
+fprint_l1ctp
 ( out, l1t0 ) =
 (
 case+ l1t0 of
 //
 |
-L1TYPnone() =>
-fprint!(out, "L1TYPnone()")
+L1CTPnone() =>
+fprint!(out, "L1CTPnone()")
 |
-L1TYPsome() =>
-fprint!(out, "L1TYPsome()")
+L1CTPsome() =>
+fprint!(out, "L1CTPsome()")
 //
 |
-L1TYPname(name) =>
+L1CTPname(name) =>
 fprint!
-(out, "L1TYPname(", name, ")")
+(out, "L1CTPname(", name, ")")
 //
 |
-L1TYPtype(h0t1) =>
+L1CTPtype(h0t1) =>
 fprint!
-(out, "L1TYPtype(", h0t1, ")")
+(out, "L1CTPtype(", h0t1, ")")
 //
 |
-L1TYPtydat
+L1CTPtydat
 ( htc1
 , h0ts, dtcs ) =>
 fprint!
 ( out
-, "L1TYPtydat("
+, "L1CTPtydat("
 , htc1, "; ", h0ts, "; ", "...", ")"
 )
 |
-L1TYPtyrec
+L1CTPtyrec
 ( bxty, tnms )  =>
 fprint!
 ( out
-, "L1TYPtyrec(", bxty, "; ", tnms, ")"
+, "L1CTPtyrec(", bxty, "; ", tnms, ")"
 )
 |
-L1TYPtyapp
+L1CTPtyapp
 ( l1t1, tnms ) =>
 fprint!
 ( out
-, "L1TYPtyapp(", l1t1, "; ", tnms, ")"
+, "L1CTPtyapp(", l1t1, "; ", tnms, ")"
 )
 ) where
 {
@@ -185,7 +185,7 @@ implement
 fprint_val<l1tnm> = fprint_l1tnm
 implement
 fprint_val<labl1tnm> = fprint_labl1tnm
-} (*where*) // end of [fprint_l1typ]
+} (*where*) // end of [fprint_l1ctp]
 //
 (* ****** ****** *)
 //

@@ -114,22 +114,22 @@ $S2E.TYRECflt2 _ => 0
 //
 implement
 l1tnm2bxty(ltnm) =
-l1typ2bxty(ltnm.ltyp())
+l1ctp2bxty(ltnm.ltyp())
 //
 implement
-l1typ2bxty(l1t0) =
+l1ctp2bxty(l1t0) =
 (
 case+ l1t0 of
 //
 |
-L1TYPtydat _ => 1(*boxed*)
+L1CTPtydat _ => 1(*boxed*)
 //
 |
-L1TYPtyrec(knd0, _) => knd0
+L1CTPtyrec(knd0, _) => knd0
 //
 |
-_(*rest-of-l1typ*) => 0(*flat0*)
-) (*case*) // end of [l1typ2bxty]
+_(*rest-of-l1ctp*) => 0(*flat0*)
+) (*case*) // end of [l1ctp2bxty]
 //
 (* ****** ****** *)
 
@@ -603,7 +603,7 @@ val () =
 (
 case+ l1t0 of
 |
-L1TYPnone() =>
+L1CTPnone() =>
 let
 val
 h0t0 = ltnm.htyp()
@@ -613,12 +613,12 @@ HX-2022-04-30:
 This is needed for
 handling recursion
 *)
-ltnm.ltyp(L1TYPsome())
+ltnm.ltyp(L1CTPsome())
 in
 ltnm.ltyp
 (h0typ_ltypize_rec1(h0t0))
 end
-| _(*non-L1TYPnone*) => ((*void*))
+| _(*non-L1CTPnone*) => ((*void*))
 )
 } (*where*)//end of [l1tnm_ltypize_rec0]
 //
@@ -841,7 +841,7 @@ auxh0t0(h0t0)) where
 //
 fun
 auxh0t0
-(h0t0: h0typ): l1typ =
+(h0t0: h0typ): l1ctp =
 let
 val
 h0t0 = h0typ_eval(h0t0)
@@ -859,7 +859,7 @@ H0Ttyext _ => f0_tyext(h0t0)
 H0Ttyrec _ => f0_tyrec(h0t0)
 //
 |
-_(*non-H0T...*) => L1TYPtype(h0t0)
+_(*non-H0T...*) => L1CTPtype(h0t0)
 //
 end where
 {
@@ -867,15 +867,15 @@ end where
 fun
 f0_tcst
 ( h0t0
-: h0typ): l1typ =
+: h0typ): l1ctp =
 (
-  L1TYPtype( h0t0 )
+  L1CTPtype( h0t0 )
 )
 //
 and
 f0_tapp
 ( h0t0
-: h0typ): l1typ =
+: h0typ): l1ctp =
 (
 let
 val-
@@ -897,7 +897,7 @@ hdc1.isdat() =>
 |
 _(*not-isdat*) =>
 (
-  L1TYPtyapp(l1t1, l1ts)
+  L1CTPtyapp(l1t1, l1ts)
 ) where
 {
   val l1t1 = auxh0t0(h0t1)
@@ -906,7 +906,7 @@ _(*not-isdat*) =>
 )
 //
 |
-_(*non-H0Tcst*) => L1TYPtype(h0t0)
+_(*non-H0Tcst*) => L1CTPtype(h0t0)
 //
 end (*let*) // end of [f0_tapp]
 )
@@ -914,7 +914,7 @@ end (*let*) // end of [f0_tapp]
 and
 f0_tyext
 ( h0t0
-: h0typ): l1typ =
+: h0typ): l1ctp =
 let
 val-
 H0Ttyext
@@ -922,7 +922,7 @@ H0Ttyext
 , h0ts) = h0t0.node()
 //
 val
-l1t1 = L1TYPname(name)
+l1t1 = L1CTPname(name)
 //
 in
 case+ h0ts of
@@ -934,7 +934,7 @@ case+ h0ts of
     val
     l1ts = auxhats(h0ts)
   in
-    L1TYPtyapp(l1t1, l1ts)
+    L1CTPtyapp(l1t1, l1ts)
   end
 //
 end (*let*)//end-of-[f0_tyext]
@@ -942,7 +942,7 @@ end (*let*)//end-of-[f0_tyext]
 and
 f0_tydat
 ( h0t0
-: h0typ): l1typ =
+: h0typ): l1ctp =
 let
 //
 val-
@@ -950,7 +950,7 @@ H0Tapp
 ( h0t1
 , h0ts) = h0t0.node()
 in
-L1TYPtydat
+L1CTPtydat
 (htc1, h0ts, dtcs) where
 {
 //
@@ -978,7 +978,7 @@ end (*let*) // end of [f0_tydat]
 and
 f0_tyrec
 ( h0t0
-: h0typ): l1typ =
+: h0typ): l1ctp =
 let
 //
 val-
@@ -1019,7 +1019,7 @@ list_cons
 ) (* end of [f1_lst] *)
 }
 in
-L1TYPtyrec( knd0, auxlhats(lhts) )
+L1CTPtyrec( knd0, auxlhats(lhts) )
 end(*let*)//end of [f0_tyrec]
 //
 } (*where*) // end of [auxh0t0]
@@ -1048,14 +1048,14 @@ opt = the_ltnmmap_search_opt(h0t0)
 and
 auxh0ts
 ( h0ts
-: h0typlst): l1typlst =
+: h0typlst): l1ctplst =
 list_vt2t
 (
-list_map<h0typ><l1typ>(h0ts)
+list_map<h0typ><l1ctp>(h0ts)
 ) where
 {
 implement
-list_map$fopr<h0typ><l1typ>(x0) = auxh0t0(x0)
+list_map$fopr<h0typ><l1ctp>(x0) = auxh0t0(x0)
 }
 //
 and
@@ -1189,14 +1189,14 @@ val l1t0 = ltnm.ltyp()
 in//in-of-let
 case+ l1t0 of
 |
-L1TYPnone() =>
+L1CTPnone() =>
 let
 val h0t0 = ltnm.htyp()
 in
 ltnm.ltyp
 (h0typ_ltypize_rec1(h0t0))
 end
-| _(*non-L1TYPnone*) => ((*void*))
+| _(*non-L1CTPnone*) => ((*void*))
 end (*let*) // end of [auxltnm]
 //
 fun

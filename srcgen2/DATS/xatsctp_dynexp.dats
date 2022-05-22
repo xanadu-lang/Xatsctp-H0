@@ -567,31 +567,31 @@ local
 (* ****** ****** *)
 
 fun
-aux_valdecl
+aux_valdclst
 ( env0:
 ! xctpenv
 , dcl0: h0dcl): void =
 let
 val-
-H0Cvaldecl
+H0Cvaldclst
 ( knd0
 , mopt
 , hvds) = dcl0.node()
 in
 xatsctp_hvaldeclist(env0, hvds)
-end // end of [aux_valdecl]
+end // end of [aux_valdclst]
 
 (* ****** ****** *)
 
 fun
-aux_fundecl
+aux_fundclst
 ( env0:
 ! xctpenv
 , dcl0: h0dcl): void =
 let
 //
 val-
-H0Cfundecl
+H0Cfundclst
 ( knd0
 , mopt
 , tqas
@@ -601,21 +601,21 @@ in
 case+ tqas of
 |
 list_nil() => // function
-aux_fundecl_fun(env0, dcl0)
+aux_fundclst_fun(env0, dcl0)
 |
 list_cons _ => // template
-aux_fundecl_tmp(env0, dcl0)
-end // end of [aux_fundecl]
+aux_fundclst_tmp(env0, dcl0)
+end // end of [aux_fundclst]
 
 and
-aux_fundecl_fun
+aux_fundclst_fun
 ( env0:
 ! xctpenv
 , dcl0: h0dcl): void =
 let
 //
 val-
-H0Cfundecl
+H0Cfundclst
 ( knd0
 , mopt
 , tqas
@@ -627,10 +627,10 @@ println!
 //
 in
 xatsctp_hfundeclist(env0, hfds)
-end // end of [aux_fundecl_fun]
+end // end of [aux_fundclst_fun]
 
 and
-aux_fundecl_tmp
+aux_fundclst_tmp
 ( env0:
 ! xctpenv
 , dcl0: h0dcl): void =
@@ -644,19 +644,19 @@ in
 (*
 HX: should template be compiled?
 *)
-end // end of [aux_fundecl_tmp]
+end // end of [aux_fundclst_tmp]
 
 (* ****** ****** *)
 
 fun
-aux_impdecl3
+aux_impldcl3
 ( env0:
 ! xctpenv
 , dcl0: h0dcl): void =
 let
 //
 val-
-H0Cimpdecl3
+H0Cimplmnt3
 ( tok0
 , stm0
 , mopt
@@ -682,7 +682,7 @@ aux_impdecl3_none
 let
 //
 val-
-H0Cimpdecl3
+H0Cimplmnt3
 ( tok0
 , stm0
 , mopt
@@ -725,7 +725,7 @@ aux_impdecl3_some
 let
 //
 val-
-H0Cimpdecl3
+H0Cimplmnt3
 ( tok0
 , stm0
 , mopt
@@ -772,16 +772,16 @@ case+
 dcl0.node() of
 //
 |
-H0Cvaldecl _ =>
-aux_valdecl(env0, dcl0)
+H0Cvaldclst _ =>
+aux_valdclst(env0, dcl0)
 //
 |
-H0Cfundecl _ =>
-aux_fundecl(env0, dcl0)
+H0Cfundclst _ =>
+aux_fundclst(env0, dcl0)
 //
 |
-H0Cimpdecl3 _ =>
-aux_impdecl3(env0, dcl0)
+H0Cimplmnt3 _ =>
+aux_impldcl3(env0, dcl0)
 //
 | _ (*rest-of-h0dcl*) =>
 {
@@ -814,11 +814,11 @@ case+
 dcl0.node() of
 //
 |
-H0Cfundecl _ =>
-aux_fundecl_fun(env0, dcl0)
+H0Cfundclst _ =>
+aux_fundclst_fun(env0, dcl0)
 //
 |
-H0Cimpdecl3 _ =>
+H0Cimplmnt3 _ =>
 aux_impdecl3_none(env0, dcl0)
 //
 | _ (* else *) =>

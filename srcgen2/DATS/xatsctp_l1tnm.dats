@@ -139,7 +139,7 @@ l1tnm_struct =
 @{
   l1tnm_htsz= (int)
 , l1tnm_htyp= h0typ
-, l1tnm_ltyp= l1typ
+, l1tnm_ltyp= l1ctp
 , l1tnm_stamp= stamp
 } // end of [l1tnm_struct]
 //
@@ -173,7 +173,7 @@ ref<l1tnm_struct>
 {
   val htsz =
   h0typ_size(h0t0)
-  val l1t0 = L1TYPnone()
+  val l1t0 = L1CTPnone()
 }
 //
 end//end-of-[l1tnm_make_htyp]

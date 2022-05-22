@@ -102,7 +102,7 @@ f1_tnm1
 case+
 tnm1.ltyp() of
 |
-L1TYPname(name) =>
+L1CTPname(name) =>
 let
 val stmp = tnm1.stamp()
 in(*in-of-let*)
@@ -110,9 +110,9 @@ in(*in-of-let*)
 fprintln!
 (out, "typedef", " ", name, " ", "xtnm_", stmp, ";")
 //
-end(*let*)//end-of-[L1TYPname]
+end(*let*)//end-of-[L1CTPname]
 |
-_(*non-L1TYPname*) => ((*void*))
+_(*non-L1CTPname*) => ((*void*))
 }
 ) (*case*) // end of [ my_main1 ]
 //
@@ -142,7 +142,7 @@ f1_tnm1
 case+
 tnm1.ltyp() of
 |
-L1TYPtydat
+L1CTPtydat
 ( htc1
 , h0ts, dtcs) =>
 let
@@ -154,9 +154,9 @@ fprintln!
 ( out, "typedef"
 , " ", "struct{xcmp_ctag_t ctag0;}", " ", "xtnm_", stmp, ";")
 //
-end(*let*)//end-of-[L1TYPtydat]
+end(*let*)//end-of-[L1CTPtydat]
 |
-_(*non-L1TYPtydat*) => ((*void*))
+_(*non-L1CTPtydat*) => ((*void*))
 //
 } (*where*) // endof [ my_main2 ]
 )
@@ -186,7 +186,7 @@ f1_ltnm
 case+
 tnm1.ltyp() of
 |
-L1TYPtyrec
+L1CTPtyrec
 (knd0, flds) =>
 let
 //
@@ -200,7 +200,7 @@ g1_fld1
 {
 //
 val l1t1 = ltnm.ltyp()
-val bxty = l1typ2bxty(l1t1)
+val bxty = l1ctp2bxty(l1t1)
 //
 val () =
 let
@@ -298,7 +298,7 @@ f1_tnm1
 case+
 tnm1.ltyp() of
 |
-L1TYPtydat
+L1CTPtydat
 ( htc1
 , h0ts, dtcs) =>
 (
@@ -324,7 +324,7 @@ g2_tnm1
 val
 l1t1 = tnm1.ltyp()
 val
-bxty = l1typ2bxty(l1t1)
+bxty = l1ctp2bxty(l1t1)
 //
 val () =
 let
@@ -387,9 +387,9 @@ list_cons(dtc1, dtcs) =>
 (g1_dtc1(dtc1); g1_dtcs(dtcs))
 )
 //
-}(*where*)//end-of[L1TYPtydat]
+}(*where*)//end-of[L1CTPtydat]
 |
-_(*non-L1TYPtydat*) => ((*void*))
+_(*non-L1CTPtydat*) => ((*void*))
 }
 ) (*case*) // end of [ my_main4 ]
 //
@@ -422,13 +422,13 @@ in
 //
 case+ l1t1 of
 |
-L1TYPname _ => ()
+L1CTPname _ => ()
 |
-L1TYPtydat _ => ()
+L1CTPtydat _ => ()
 |
-L1TYPtyrec _ => ()
+L1CTPtyrec _ => ()
 |
-_(*rest-of-l1typ*) =>
+_(*rest-of-l1ctp*) =>
 let
 val stmp = tnm1.stamp()
 in

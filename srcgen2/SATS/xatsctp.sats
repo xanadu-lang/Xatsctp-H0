@@ -118,24 +118,24 @@ typedef h0comped = $H0E.h0comped
 (* ****** ****** *)
 //
 datatype
-l1typ =
+l1ctp =
 //
 |
-L1TYPnone of ()
+L1CTPnone of ()
 |
-L1TYPsome of ()
+L1CTPsome of ()
 |
-L1TYPname of string
+L1CTPname of string
 |
-L1TYPtype of (h0typ)
+L1CTPtype of (h0typ)
 |
-L1TYPtyrec of
+L1CTPtyrec of
 (int(*bxty*), labl1tnmlst)
 |
-L1TYPtydat of
+L1CTPtydat of
 (htcst, h0typlst, l1dtclst)
 |
-L1TYPtyapp of (l1typ, l1tnmlst)
+L1CTPtyapp of (l1ctp, l1tnmlst)
 //
 and
 l1dtc = // HX: for datcons
@@ -143,7 +143,7 @@ L1DTCdtcon of (h0con, l1tnmlst)
 //
 where
 labl1tnm = slabeled(l1tnm)
-and l1typlst = List0(l1typ)
+and l1ctplst = List0(l1ctp)
 and l1dtclst = List0(l1dtc)
 and labl1tnmlst = List0(labl1tnm)
 //
@@ -189,13 +189,13 @@ l1tnm_get_htsz(l1tnm): (int)
 fun
 l1tnm_get_htyp(l1tnm): h0typ
 fun
-l1tnm_get_ltyp(l1tnm): l1typ
+l1tnm_get_ltyp(l1tnm): l1ctp
 fun
 l1tnm_get_stamp(l1tnm): stamp
 //
 fun
 l1tnm_set_ltyp
-(ltnm: l1tnm, l1t0: l1typ): void
+(ltnm: l1tnm, l1t0: l1ctp): void
 //
 fun
 l1tnm_make_htyp(h0typ): l1tnm
@@ -211,20 +211,20 @@ l1tnm_make_htyp(h0typ): l1tnm
 (* ****** ****** *)
 //
 fun l1tnm2bxty(l1tnm): int
-fun l1typ2bxty(l1typ): int
+fun l1ctp2bxty(l1ctp): int
 //
 (* ****** ****** *)
 //
 fun
-print_l1typ: print_type(l1typ)
+print_l1ctp: print_type(l1ctp)
 fun
-prerr_l1typ: prerr_type(l1typ)
+prerr_l1ctp: prerr_type(l1ctp)
 fun
-fprint_l1typ: fprint_type(l1typ)
+fprint_l1ctp: fprint_type(l1ctp)
 //
-overload print with print_l1typ
-overload prerr with prerr_l1typ
-overload fprint with fprint_l1typ
+overload print with print_l1ctp
+overload prerr with prerr_l1ctp
+overload fprint with fprint_l1ctp
 //
 (* ****** ****** *)
 //
@@ -272,7 +272,7 @@ fun
 l1tnm_ltypize_rec1(l1tnm): l1tnm
 //
 fun
-h0typ_ltypize_rec1(h0typ): l1typ
+h0typ_ltypize_rec1(h0typ): l1ctp
 //
 (* ****** ****** *)
 //
