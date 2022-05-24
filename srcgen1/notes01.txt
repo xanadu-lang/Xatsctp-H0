@@ -1,0 +1,52 @@
+typedef
+struct
+{ int ctag0; } list$000_d0at;
+typedef
+list$000_d0at *list$000_d1at;
+
+typedef
+struct
+list$000_nil_d0at list$000_nil_d0at;
+typedef
+list$000_nil_d0at *list$000_nil_d1at;
+typedef
+struct
+list$000_cons_d0at list$000_cons_d0at;
+typedef
+list$000_cons_d0at *list$000_cons_d1at;
+
+struct
+list$000_nil_d0at
+{
+  int ctag0;
+} ; // end of [list_nil_d0at]
+
+struct
+list$000_cons_d0at
+{
+  int ctag0;
+  int carg1;
+  list$000_d1at carg2;
+} ; // end of [list_cons_d0at]
+
+#define \
+list$000_cons_cast(x) ((list$000_cons_d1at)(x))
+
+H0Pvar: H0TNM(1001; H0Tapp(H0Tcst(list_t0_i0_x0(2)); H0Tapp(H0Tcst(gint_type(3)); H0Ttyext(xats_sint_t; ), H0Tnone1([t2ype])H0Tnone1(T2Pnone0())), H0Tnone1([t2ype])H0Tnone1(T2Pnone0())))
+
+typedef
+struct{ int ctag0; } h0tnm$1001_d0at;
+
+struct
+h0tnm$1001_list_nil_d0at
+{
+  int ctag0;
+} ; // end of [list_nil_d0at]
+
+struct
+h0tnm$1001_list_cons_d0at
+{
+  int ctag0;
+  int carg1;
+  h0tnm$1001_d1at carg2;
+} ; // end of [list_cons_d0at]
