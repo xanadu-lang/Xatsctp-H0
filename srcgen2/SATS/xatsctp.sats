@@ -34,7 +34,7 @@
 (* ****** ****** *)
 #define
 ATS_PACKNAME
-"ATS3.XANADU.libxatsctp"
+"ATS3.XANADU.xatsctp"
 (* ****** ****** *)
 //
 #define
