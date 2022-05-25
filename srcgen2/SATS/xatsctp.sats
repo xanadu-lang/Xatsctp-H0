@@ -101,18 +101,20 @@ typedef h0con = $H0E.h0con
 typedef h0cst = $H0E.h0cst
 typedef h0var = $H0E.h0var
 //
+(* ****** ****** *)
+//
 typedef h0pat = $H0E.h0pat
+typedef h0fag = $H0E.h0fag
 typedef h0patlst = $H0E.h0patlst
-//
-typedef h0exp = $H0E.h0exp
-typedef h0explst = $H0E.h0explst
-//
-typedef h0dcl = $H0E.h0dcl
-typedef h0dclist = $H0E.h0dclist
+typedef h0faglst = $H0E.h0faglst
 //
 (* ****** ****** *)
-typedef hfarg = $H0E.h0farg
-typedef hfarglst = $H0E.h0farglst
+//
+typedef h0exp = $H0E.h0exp
+typedef h0dcl = $H0E.h0dcl
+typedef h0dclist = $H0E.h0dclist
+typedef h0explst = $H0E.h0explst
+//
 (* ****** ****** *)
 typedef h0comped = $H0E.h0comped
 (* ****** ****** *)
