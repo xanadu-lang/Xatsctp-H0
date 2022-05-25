@@ -92,7 +92,7 @@ H0Ttyrec
 ( knd0
 , npf1, lhts) => my_lhts(lhts) + 1
 //
-|H0Tnone0 _ =>(0)|H0Tnone1 _ =>(0)
+|H0Tnone0 _ =>(0) |H0Tnone1 _ =>(0)
 ) (*case*) // end of [my_h0t0]
 //
 and
