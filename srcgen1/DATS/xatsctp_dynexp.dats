@@ -66,14 +66,14 @@ xatsctp_h0patlst
 (* ****** ****** *)
 extern
 fun
-xatsctp_hfarg
+xatsctp_h0fag
 ( env0:
-! xctpenv, hfa0: hfarg): void
+! xctpenv, hfg0: h0fag): void
 extern
 fun
-xatsctp_hfarglst
+xatsctp_h0faglst
 ( env0:
-! xctpenv, hfas: hfarglst): void
+! xctpenv, hfgs: h0faglst): void
 (* ****** ****** *)
 extern
 fun
@@ -120,7 +120,7 @@ fprint_val<h0typ> = fprint_h0typ
 implement
 fprint_val<h0pat> = fprint_h0pat
 implement
-fprint_val<hfarg> = fprint_hfarg
+fprint_val<h0fag> = fprint_h0fag
 //
 implement
 fprint_val<h0exp> = fprint_h0exp
@@ -135,34 +135,34 @@ extern
 fun
 xatsctp_hvaldecl
 ( env0:
-! xctpenv, hvd0: hvaldecl): void
+! xctpenv, hvd0: h0valdecl): void
 extern
 fun
 xatsctp_hvaldeclist
 ( env0:
-! xctpenv, hvds: hvaldeclist): void
+! xctpenv, hvds: h0valdeclist): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_hvardecl
 ( env0:
-! xctpenv, hvd0: hvardecl): void
+! xctpenv, hvd0: h0vardecl): void
 extern
 fun
 xatsctp_hvardeclist
 ( env0:
-! xctpenv, hvds: hvardeclist): void
+! xctpenv, hvds: h0vardeclist): void
 (* ****** ****** *)
 extern
 fun
 xatsctp_hfundecl
 ( env0:
-! xctpenv, hfd0: hfundecl): void
+! xctpenv, hfd0: h0fundecl): void
 extern
 fun
 xatsctp_hfundeclist
 ( env0:
-! xctpenv, hfds: hfundeclist): void
+! xctpenv, hfds: h0fundeclist): void
 (* ****** ****** *)
 
 implement
@@ -235,7 +235,7 @@ _(* rest-of-h0pat*) =>
 println!
 ("xatsctp_h0pat: h0p0 = ", h0p0)
 //
-end // end of [xatsctp_h0pat]
+end (*let*) // end of [xatsctp_h0pat]
 
 (* ****** ****** *)
 
@@ -254,46 +254,46 @@ xatsctp_h0pat(env0, h0p1)
 val () =
 xatsctp_h0patlst(env0, h0ps)
 }
-) // end of [xatsctp_h0patlst]
+) (*case*) // end of [xatsctp_h0patlst]
 
 (* ****** ****** *)
 //
 implement
-xatsctp_hfarg
-(env0, hfa0) =
+xatsctp_h0fag
+(env0, hfg0) =
 (
 case+
-hfa0.node() of
+hfg0.node() of
 //
-| HFARGnone0() => ()
-| HFARGnone1(_) => ()
+| H0FAGnone0() => ()
+| H0FAGnone1(_) => ()
 //
-| HFARGnpats
+| H0FAGnpats
   (npf1, h0ps) =>
 (
   xatsctp_h0patlst(env0, h0ps)
 )
 //
-) (*case*) // end of [xatsctp_hfarg]
+) (*case*) // end of [xatsctp_h0fag]
 //
 (* ****** ****** *)
 
 implement
-xatsctp_hfarglst
-(env0, hfas) =
+xatsctp_h0faglst
+(env0, hfgs) =
 (
-case+ hfas of
+case+ hfgs of
 |
 list_nil() => ()
 |
-list_cons(hfa1, hfas) =>
+list_cons(hfg1, hfgs) =>
 {
 val () =
-xatsctp_hfarg(env0, hfa1)
+xatsctp_h0fag(env0, hfg1)
 val () =
-xatsctp_hfarglst(env0, hfas)
+xatsctp_h0faglst(env0, hfgs)
 }
-) // end of [xatsctp_hfarglst]
+) (*case*) // end of [xatsctp_h0faglst]
 
 (* ****** ****** *)
 
@@ -570,7 +570,7 @@ aux_valdecl
 , dcl0: h0dcl): void =
 let
 val-
-H0Cvaldecl
+H0Cvaldclst
 ( knd0
 , mopt
 , hvds) = dcl0.node()
@@ -588,7 +588,7 @@ aux_fundecl
 let
 //
 val-
-H0Cfundecl
+H0Cfundclst
 ( knd0
 , mopt
 , tqas
@@ -612,7 +612,7 @@ aux_fundecl_fun
 let
 //
 val-
-H0Cfundecl
+H0Cfundclst
 ( knd0
 , mopt
 , tqas
@@ -653,13 +653,13 @@ aux_impdecl3
 let
 //
 val-
-H0Cimpdecl3
+H0Cimplmnt3
 ( tok0
 , stm0
 , mopt
 , htqa
 , hdc0, htia
-, hfas, h0e1) = dcl0.node()
+, hfgs, h0e1) = dcl0.node()
 //
 in
 case+ htia of
@@ -679,13 +679,13 @@ aux_impdecl3_none
 let
 //
 val-
-H0Cimpdecl3
+H0Cimplmnt3
 ( tok0
 , stm0
 , mopt
 , htqa
 , hdc0, htia
-, hfas, h0e1) = dcl0.node()
+, hfgs, h0e1) = dcl0.node()
 //
 val ( ) =
 println!
@@ -700,9 +700,9 @@ println!
 //
 val ( ) =
 println!
-("HIMPDECL3.hfas = ", hfas)
+("HIMPDECL3.hfgs = ", hfgs)
 val ( ) =
-xatsctp_hfarglst(env0, hfas)
+xatsctp_h0faglst(env0, hfgs)
 //
 in
 xatsctp_h0exp
@@ -722,13 +722,13 @@ aux_impdecl3_some
 let
 //
 val-
-H0Cimpdecl3
+H0Cimplmnt3
 ( tok0
 , stm0
 , mopt
 , htqa
 , hdc0, htia
-, hfas, h0e1) = dcl0.node()
+, hfgs, h0e1) = dcl0.node()
 //
 val ( ) =
 println!
@@ -743,7 +743,7 @@ println!
 //
 val ( ) =
 println!
-("HIMPDECL3.hfas = ", hfas)
+("HIMPDECL3.hfgs = ", hfgs)
 //
 in
 (*
@@ -769,15 +769,15 @@ case+
 dcl0.node() of
 //
 |
-H0Cvaldecl _ =>
+H0Cvaldclst _ =>
 aux_valdecl(env0, dcl0)
 //
 |
-H0Cfundecl _ =>
+H0Cfundclst _ =>
 aux_fundecl(env0, dcl0)
 //
 |
-H0Cimpdecl3 _ =>
+H0Cimplmnt3 _ =>
 aux_impdecl3(env0, dcl0)
 //
 | _ (*rest-of-h0dcl*) =>
@@ -811,11 +811,11 @@ case+
 dcl0.node() of
 //
 |
-H0Cfundecl _ =>
+H0Cfundclst _ =>
 aux_fundecl_fun(env0, dcl0)
 //
 |
-H0Cimpdecl3 _ =>
+H0Cimplmnt3 _ =>
 aux_impdecl3_none(env0, dcl0)
 //
 | _ (* else *) =>
@@ -860,7 +860,7 @@ xatsctp_hvaldecl
 let
 //
 val+
-HVALDECL
+H0VALDECL
 ( rcd ) = x0
 //
 (*
@@ -914,14 +914,14 @@ xatsctp_hfundecl
 let
 //
 val+
-HFUNDECL
+H0FUNDECL
   (rcd) = hfd0
 //
 (*
 val loc0 = rcd.loc
 *)
 val hdc0 = rcd.hdc
-val hag1 = rcd.hag
+val hfg1 = rcd.hfg
 val def2 = rcd.def
 //
 val ( ) =
@@ -930,25 +930,25 @@ println!
 //
 val ( ) =
 (
-case hag1 of
+case hfg1 of
 |
 None() =>
 println!
-("HFUNDECL.hag = ", "None(", ")" )
+("HFUNDECL.hfg = ", "None(", ")" )
 |
-Some(hfas) =>
+Some(hfgs) =>
 (
-  xatsctp_hfarglst(env0, hfas)
+  xatsctp_h0faglst(env0, hfgs)
 ) where
 {
 val ( ) =
 println!
-("HFUNDECL.hag = ", "Some(", hfas, ")")
+("HFUNDECL.hfg = ", "Some(", hfgs, ")")
 }
 ) (*case*) // end-of-val
 //
 val ( ) =
-println!( "HFUNDECL.def = ", def2 )
+println!(   "HFUNDECL.def = ", def2   )
 //
 in
 //

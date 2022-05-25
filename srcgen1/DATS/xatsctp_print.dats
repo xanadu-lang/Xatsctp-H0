@@ -73,7 +73,7 @@ fprint with $H0E.fprint_htcst
 overload
 fprint with $H0E.fprint_h0typ
 overload
-fprint with $H0E.fprint_hdcon
+fprint with $H0E.fprint_h0con
 (* ****** ****** *)
 implement
 fprint_val<h0typ> = $H0E.fprint_h0typ

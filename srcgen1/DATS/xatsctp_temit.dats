@@ -396,7 +396,7 @@ g1_l1t1(argi, l1t1); g1_l1ts(argi+1, l1ts)
 )
 //
 val ctag =
-$H0E.hdcon_get_tag(hdc1)
+$H0E.h0con_get_ctag(hdc1)
 //
 in
 fprint!
