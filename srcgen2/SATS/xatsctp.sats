@@ -34,7 +34,7 @@
 (* ****** ****** *)
 #define
 ATS_PACKNAME
-"ATS3.XANADU.xatsctp"
+"ATS3.XANADU.xatsctp-20220500"
 (* ****** ****** *)
 //
 #define
@@ -191,12 +191,12 @@ l1tnm_get_htsz(l1tnm): (int)
 fun
 l1tnm_get_htyp(l1tnm): h0typ
 fun
-l1tnm_get_ltyp(l1tnm): l1ctp
+l1tnm_get_lctp(l1tnm): l1ctp
 fun
 l1tnm_get_stamp(l1tnm): stamp
 //
 fun
-l1tnm_set_ltyp
+l1tnm_set_lctp
 (ltnm: l1tnm, l1t0: l1ctp): void
 //
 fun
@@ -205,8 +205,8 @@ l1tnm_make_htyp(h0typ): l1tnm
 #symload .htsz with l1tnm_get_htsz
 #symload .htyp with l1tnm_get_htyp
 //
-#symload .ltyp with l1tnm_get_ltyp
-#symload .ltyp with l1tnm_set_ltyp
+#symload .ltyp with l1tnm_get_lctp
+#symload .ltyp with l1tnm_set_lctp
 //
 #symload .stamp with l1tnm_get_stamp
 //
@@ -269,17 +269,17 @@ h0typ_ltnmize_rec1(h0typ): l1tnm
 (* ****** ****** *)
 //
 fun
-l1tnm_ltypize_rec0(l1tnm): void
+l1tnm_lctpize_rec0(l1tnm): void
 fun
-l1tnm_ltypize_rec1(l1tnm): l1tnm
+l1tnm_lctpize_rec1(l1tnm): l1tnm
 //
 fun
-h0typ_ltypize_rec1(h0typ): l1ctp
+h0typ_lctpize_rec1(h0typ): l1ctp
 //
 (* ****** ****** *)
 //
 fun
-the_ltnmmap_ltypize(): void
+the_ltnmmap_lctpize(): void
 //
 (* ****** ****** *)
 fun

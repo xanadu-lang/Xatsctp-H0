@@ -810,7 +810,7 @@ the_ltnmmap_temit(out) where
 {
 val out =
 outchan_get_filref(st0.outchan)
-val ( ) = the_ltnmmap_ltypize()
+val ( ) = the_ltnmmap_lctpize()
 }
 //
 end (*let*) // end-of-[val]

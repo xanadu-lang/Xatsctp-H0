@@ -139,7 +139,7 @@ l1tnm_struct =
 @{
   l1tnm_htsz= (int)
 , l1tnm_htyp= h0typ
-, l1tnm_ltyp= l1ctp
+, l1tnm_lctp= l1ctp
 , l1tnm_stamp= stamp
 } // end of [l1tnm_struct]
 //
@@ -166,7 +166,7 @@ ref<l1tnm_struct>
 @{
 , l1tnm_htsz=htsz
 , l1tnm_htyp=h0t0
-, l1tnm_ltyp=l1t0
+, l1tnm_lctp=l1t0
 , l1tnm_stamp=stmp
 }
 ) where
@@ -185,7 +185,7 @@ l1tnm_get_htsz(x0) = x0->l1tnm_htsz
 implement
 l1tnm_get_htyp(x0) = x0->l1tnm_htyp
 implement
-l1tnm_get_ltyp(x0) = x0->l1tnm_ltyp
+l1tnm_get_lctp(x0) = x0->l1tnm_lctp
 implement
 l1tnm_get_stamp(x0) = x0->l1tnm_stamp
 //
@@ -196,14 +196,14 @@ l1tnm_set_kind
 (x0->l1tnm_kind := knd1)
 *)
 implement
-l1tnm_set_ltyp
+l1tnm_set_lctp
 (x0, l1t0) =
-(x0->l1tnm_ltyp := l1t0) where
+(x0->l1tnm_lctp := l1t0) where
 {
 (*
   val () = ( x0->l1tnm_kind := (1) )
 *)
-} (*where*)//end-of-[l1tnm_set_ltyp]
+} (*where*)//end-of-[l1tnm_set_lctp]
 //
 (* ****** ****** *)
 
