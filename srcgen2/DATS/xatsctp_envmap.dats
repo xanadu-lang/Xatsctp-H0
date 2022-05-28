@@ -46,7 +46,7 @@ UN = "prelude/SATS/unsafe.sats"
 #define
 XATSOPT_targetloc
 "./../..\
-/MODULE//xatsopt/srcgen/xcomp"
+/modules/xatsopt/srcgen/xcomp"
 //
 (* ****** ****** *)
 //
