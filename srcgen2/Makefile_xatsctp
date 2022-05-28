@@ -18,7 +18,7 @@ RMF=rm -f
 MAKE=make
 
 ######
-XATSOPT="./../xatsopt"
+XATSOPT="./../MODULE/xatsopt"
 ######
 
 PATSCC=$(PATSHOME)/bin/patscc

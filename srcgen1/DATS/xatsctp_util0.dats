@@ -946,7 +946,7 @@ H0Tcst(htc1)= h0t1.node()
 //
 val dtcs =
 let
-val-Some(hdcs) = htc1.h0conlst()
+val-Some(hdcs) = htc1.hconlst()
 in
 list_vt2t
 (
