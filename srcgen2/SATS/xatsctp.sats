@@ -34,12 +34,13 @@
 (* ****** ****** *)
 #define
 ATS_PACKNAME
-"ATS3.XANADU.xatsctp-20220500"
+"ATS3.XANADU.xatsctp-220500"
 (* ****** ****** *)
 //
 #define
 XATSOPT_targetloc
-"./../../xatsopt/srcgen/xcomp"
+"./../..\
+/MODULE/xatsopt/srcgen/xcomp"
 //
 (* ****** ****** *)
 //
