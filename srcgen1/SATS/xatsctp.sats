@@ -34,7 +34,7 @@
 (* ****** ****** *)
 #define
 ATS_PACKNAME
-"ATS3.XANADU.xatsctp-220400"
+"ATS3.XANADU.xatsctp-20220400"
 (* ****** ****** *)
 //
 #define
@@ -50,16 +50,16 @@ XATSOPT_targetloc
 "{$XATSOPT}/SATS/xlabel0.sats"
 //
 (* ****** ****** *)
-typedef stamp = $STM.stamp
-typedef label = $LAB.label
+  typedef stamp = $STM.stamp
+  typedef label = $LAB.label
 (* ****** ****** *)
 //
 #staload S2E =
 "{$XATSOPT}/SATS/staexp2.sats"
 //
-sexpdef
-slabeled
-(a:type) = $S2E.slabeled(a)
+  sexpdef
+  slabeled
+  (a:type) = $S2E.slabeled(a)
 //
 (* ****** ****** *)
 //

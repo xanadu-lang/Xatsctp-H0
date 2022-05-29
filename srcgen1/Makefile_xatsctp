@@ -13,7 +13,7 @@ RMF=rm -f
 MAKE=make
 
 ######
-XATSOPT="./../modules//xatsopt"
+XATSOPT="./../modules/xatsopt"
 ######
 
 PATSCC=$(PATSHOME)/bin/patscc
@@ -60,7 +60,7 @@ $(patsubst %.dats, BUILD/%_dats.o, $(SRCDATS))
 ######
 INCLUDE:=
 INCLUDE+=-I"."
-INCLUDE+=-I"$(XATSOPT)/srcgen/xcomp"
+INCLUDE+=-I"$(XATSOPT)/srcgen/."
 ######
 LIBRARY:=-L"$(XATSOPT)/lib" -lxatsopt
 ######
@@ -68,7 +68,7 @@ LIBRARY:=-L"$(XATSOPT)/lib" -lxatsopt
 all:: \
 lxatsopt
 lxatsopt: ; \
-(cd $(XATSOPT)/srcgen/xcomp && $(MAKE) libxatsopt)
+(cd $(XATSOPT)/srcgen/. && $(MAKE) libxatsopt)
 #
 ######
 #
@@ -131,10 +131,11 @@ clean:: ; $(RMF) xatsctp_dats.c
 ######
 
 cleanall:: clean
+cleanall:: ; $(RMF) ./.depend
 cleanall:: ; $(RMF) ./../bin/xatsctp
 cleanall:: ; $(RMF) ./../bin/xatsctp.sh
 cleanall:: ; $(RMF) $(XATSOPT)/lib/libxatsopt.a
-cleanall:: ; $(MAKE) -C $(XATSOPT)/srcgen/xcomp cleanall
+cleanall:: ; $(MAKE) -C $(XATSOPT)/srcgen/. cleanall
 
 ######
 

@@ -34,13 +34,13 @@
 (* ****** ****** *)
 #define
 ATS_PACKNAME
-"ATS3.XANADU.xatsctp-220500"
+"ATS3.XANADU.xatsctp-20220500"
 (* ****** ****** *)
 //
 #define
 XATSOPT_targetloc
 "./../..\
-/modules/xatsopt/srcgen/xcomp"
+/modules/xatsopt/srcgen"
 //
 (* ****** ****** *)
 //
@@ -57,11 +57,11 @@ typedef label = $LAB.label
 #staload S2E =
 "{$XATSOPT}/SATS/staexp2.sats"
 //
-typedef tyrec = $S2E.tyrec
+  typedef tyrec = $S2E.tyrec
 //
-sexpdef
-slabeled
-(a:type) = $S2E.slabeled(a)
+  sexpdef
+  slabeled
+  (a:type) = $S2E.slabeled(a)
 //
 (* ****** ****** *)
 //
