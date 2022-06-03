@@ -218,7 +218,8 @@ local
 //
 staload
 _(*S2E*) =
-"{$XATSOPT}/DATS/staexp2_print.dats"
+"{$XATSOPT}\
+/DATS/staexp2_print0.dats"
 //
 in(*in-of-local*)
 //
@@ -235,4 +236,4 @@ end (*local*) // end of [local]
 //
 (* ****** ****** *)
 
-(* end of [xats_xatsctp_print.dats] *)
+(* end of [xats_xatsctp_print0.dats] *)

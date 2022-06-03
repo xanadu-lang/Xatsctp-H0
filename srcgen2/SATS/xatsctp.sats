@@ -40,7 +40,7 @@ ATS_PACKNAME
 #define
 XATSOPT_targetloc
 "./../..\
-/modules/xatsopt/srcgen"
+/modules/xatsopt/srcgenx"
 //
 (* ****** ****** *)
 //

@@ -47,11 +47,11 @@ SRCSATS := \
 xatsctp.sats \
 
 SRCDATS := \
-xatsctp_main0.dats \
-xatsctp_l1tnm.dats \
-xatsctp_print.dats \
-xatsctp_util0.dats \
-xatsctp_temit.dats \
+xatsctp_mymain.dats \
+xatsctp_l1tnm0.dats \
+xatsctp_print0.dats \
+xatsctp_utils0.dats \
+xatsctp_temit0.dats \
 xatsctp_envmap.dats \
 xatsctp_dynexp.dats \
 
@@ -65,7 +65,7 @@ $(patsubst %.dats, BUILD/%_dats.o, $(SRCDATS))
 ######
 INCLUDE:=
 INCLUDE+=-I"."
-INCLUDE+=-I"$(XATSOPT)/srcgen/."
+INCLUDE+=-I"$(XATSOPT)/srcgenx/."
 ######
 LIBRARY:=-L"$(XATSOPT)/lib" -lxatsopt
 ######
@@ -73,7 +73,7 @@ LIBRARY:=-L"$(XATSOPT)/lib" -lxatsopt
 all:: \
 library
 library: ; \
-(cd $(XATSOPT)/srcgen/. && $(MAKE) libxatsopt)
+(cd $(XATSOPT)/srcgenx/. && $(MAKE) libxatsopt)
 #
 ######
 #
@@ -150,7 +150,7 @@ cleanall:: ; $(RMF) ./../bin/xatsctp
 cleanall:: ; $(RMF) ./../bin/xatsctp.sh
 cleanall:: ; $(RMF) ./../lib/libxatsctp.a
 cleanall:: ; $(RMF) $(XATSOPT)/lib/libxatsopt.a
-cleanall:: ; $(MAKE) -C $(XATSOPT)/srcgen/. cleanall
+cleanall:: ; $(MAKE) -C $(XATSOPT)/srcgenx/. cleanall
 
 ######
 

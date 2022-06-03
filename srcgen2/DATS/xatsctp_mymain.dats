@@ -346,18 +346,6 @@ HX-2020-03-08:
 The runtime for primitive functions
 *)
 //
-(*
-//
-// HX-2020-10-31:
-// This should be loaded last!
-//
-val () =
-the_prelude_load
-( XHOME
-, 1(*dynamic*)
-, "prelude/DATS/CATS/JS/basics.dats")
-*)
-//
 } (* end of [then] *) // end-of-if
 ) (* end of [the_preludes_load_if] *)
 
@@ -1283,4 +1271,4 @@ end // end of [local]
 
 (* ****** ****** *)
 
-(* end of [xats_xatsctp_main0.dats] *)
+(* end of [xats_xatsctp_mymain.dats] *)

@@ -46,15 +46,15 @@ UN = "prelude/SATS/unsafe.sats"
 (* ****** ****** *)
 //
 #dynload
-"./../DATS/xatsctp_main0.dats"
+"./../DATS/xatsctp_mymain.dats"
 #dynload
-"./../DATS/xatsctp_l1tnm.dats"
+"./../DATS/xatsctp_l1tnm0.dats"
 #dynload
-"./../DATS/xatsctp_print.dats"
+"./../DATS/xatsctp_print0.dats"
 #dynload
-"./../DATS/xatsctp_util0.dats"
+"./../DATS/xatsctp_utils0.dats"
 #dynload
-"./../DATS/xatsctp_temit.dats"
+"./../DATS/xatsctp_temit0.dats"
 #dynload
 "./../DATS/xatsctp_envmap.dats"
 #dynload

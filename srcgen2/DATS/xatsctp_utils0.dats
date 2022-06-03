@@ -1364,4 +1364,4 @@ end (*local*) // end of [local]
 end (*local*) // end of [local]
 (* ****** ****** *)
 
-(* end of [xats_xatsctp_util0.dats] *)
+(* end of [xats_xatsctp_utils0.dats] *)
