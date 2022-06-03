@@ -44,8 +44,6 @@ UN = "prelude/SATS/unsafe.sats"
 "./../HATS/libxatsctp.hats"
 //
 (* ****** ****** *)
-#staload "./../SATS/xatsctp.sats"
-(* ****** ****** *)
 overload
 fprint
 with $SYM.fprint_symbol
@@ -67,6 +65,10 @@ fprint with $LEX.fprint_token
 (* ****** ****** *)
 overload
 fprint with $S2E.fprint_tyrec
+(* ****** ****** *)
+//
+#staload "./../SATS/xatsctp.sats"
+//
 (* ****** ****** *)
 overload
 fprint with $H0E.fprint_htcst
